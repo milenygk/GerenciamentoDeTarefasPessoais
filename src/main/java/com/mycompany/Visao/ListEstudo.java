@@ -4,6 +4,8 @@
  */
 package com.mycompany.Visao;
 
+import com.mycompany.Ferramentas.Formularios;
+
 /**
  *
  * @author mileny.1948
@@ -67,6 +69,11 @@ public class ListEstudo extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setText("PLANEJAMENTO DO DIA");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -133,6 +140,13 @@ public class ListEstudo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (Formularios.estudo == null)
+            Formularios.estudo = new Estudo();
+
+        Formularios.estudo.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

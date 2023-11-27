@@ -4,6 +4,8 @@
  */
 package com.mycompany.Visao;
 
+import com.mycompany.Ferramentas.Formularios;
+
 /**
  *
  * @author mileny.1948
@@ -65,6 +67,11 @@ public class ListTrabalho extends javax.swing.JFrame {
 
         btnAdicionar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnAdicionar.setText("PLANEJAMENTO DO DIA");
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarActionPerformed(evt);
+            }
+        });
 
         jcbTipoFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Data", "Importante", "Importante e urgente", "Ugente", "Não Importante nem Urgente" }));
 
@@ -127,6 +134,13 @@ public class ListTrabalho extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
+              if (Formularios.trabalho == null)
+            Formularios.trabalho = new Trabalho();
+
+        Formularios.trabalho.setVisible(true);
+    }//GEN-LAST:event_btnAdicionarActionPerformed
 
     /**
      * @param args the command line arguments

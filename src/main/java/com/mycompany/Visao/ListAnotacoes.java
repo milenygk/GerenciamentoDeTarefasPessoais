@@ -4,6 +4,8 @@
  */
 package com.mycompany.Visao;
 
+import com.mycompany.Ferramentas.Formularios;
+
 /**
  *
  * @author mileny.1948
@@ -62,6 +64,11 @@ public class ListAnotacoes extends javax.swing.JFrame {
 
         btnAdicionar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnAdicionar.setText("ADICIONAR ANOTAÇÃO");
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnBuscar.setText("BUSCAR");
@@ -130,6 +137,13 @@ public class ListAnotacoes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
+          if (Formularios.Anotacoes == null)
+            Formularios.Anotacoes = new Anotacoes();
+
+        Formularios.Anotacoes.setVisible(true);
+    }//GEN-LAST:event_btnAdicionarActionPerformed
 
     /**
      * @param args the command line arguments

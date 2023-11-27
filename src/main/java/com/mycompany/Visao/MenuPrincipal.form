@@ -223,6 +223,9 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelPlanejamentoMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelHabitos">
           <Properties>
@@ -234,6 +237,9 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelHabitosMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelHobbies">
           <Properties>
@@ -245,6 +251,9 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelHobbiesMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelObrigacoes">
           <Properties>
@@ -256,6 +265,9 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelObrigacoesMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelTrabalho">
           <Properties>
@@ -267,6 +279,9 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelTrabalhoMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelEstudo">
           <Properties>
@@ -278,6 +293,9 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelEstudoMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelMetas">
           <Properties>
@@ -289,6 +307,9 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelMetasMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelViagens">
           <Properties>
@@ -300,6 +321,9 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelViagensMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LabelBlocoDeNotas">
           <Properties>
@@ -311,6 +335,9 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LabelBlocoDeNotasMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelCalendario">
           <Properties>
@@ -355,6 +382,9 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelContaMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

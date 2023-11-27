@@ -4,6 +4,8 @@
  */
 package com.mycompany.Visao;
 
+import com.mycompany.Ferramentas.Formularios;
+
 /**
  *
  * @author mileny.1948
@@ -35,7 +37,7 @@ public class ListObrigacoes extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         btnAdicionar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -67,6 +69,11 @@ public class ListObrigacoes extends javax.swing.JFrame {
 
         btnAdicionar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnAdicionar.setText("ADICIONAR OBRIGAÇÃO");
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -127,6 +134,13 @@ public class ListObrigacoes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
+        if (Formularios.Obrigacoes == null)
+            Formularios.Obrigacoes = new Obrigacoes();
+
+        Formularios.Obrigacoes.setVisible(true);
+    }//GEN-LAST:event_btnAdicionarActionPerformed
 
     /**
      * @param args the command line arguments

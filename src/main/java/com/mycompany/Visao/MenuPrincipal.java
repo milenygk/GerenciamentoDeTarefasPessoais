@@ -109,38 +109,83 @@ public class MenuPrincipal extends javax.swing.JFrame {
         labelPlanejamento.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         labelPlanejamento.setText("PANEJAMENTO DIÁRIO");
         labelPlanejamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelPlanejamento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelPlanejamentoMouseClicked(evt);
+            }
+        });
 
         labelHabitos.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         labelHabitos.setText("HÁBITOS");
         labelHabitos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelHabitos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelHabitosMouseClicked(evt);
+            }
+        });
 
         labelHobbies.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         labelHobbies.setText("HOBBIES");
         labelHobbies.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelHobbies.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelHobbiesMouseClicked(evt);
+            }
+        });
 
         labelObrigacoes.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         labelObrigacoes.setText("OBRIGAÇÕES");
         labelObrigacoes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelObrigacoes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelObrigacoesMouseClicked(evt);
+            }
+        });
 
         labelTrabalho.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         labelTrabalho.setText("PLANEJAMENTO DE TRABALHO");
         labelTrabalho.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelTrabalho.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelTrabalhoMouseClicked(evt);
+            }
+        });
 
         labelEstudo.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         labelEstudo.setText("PLANEJAMENTO DE ESTUDO");
         labelEstudo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelEstudo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelEstudoMouseClicked(evt);
+            }
+        });
 
         labelMetas.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         labelMetas.setText("METAS");
         labelMetas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelMetas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelMetasMouseClicked(evt);
+            }
+        });
 
         labelViagens.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         labelViagens.setText("VIAGENS");
         labelViagens.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelViagens.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelViagensMouseClicked(evt);
+            }
+        });
 
         LabelBlocoDeNotas.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         LabelBlocoDeNotas.setText("ANOTAÇÕES");
         LabelBlocoDeNotas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        LabelBlocoDeNotas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LabelBlocoDeNotasMouseClicked(evt);
+            }
+        });
 
         labelCalendario.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         labelCalendario.setText("CALENDÁRIO");
@@ -161,6 +206,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         labelConta.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         labelConta.setText("MEUS DADOS");
         labelConta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelConta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelContaMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -247,10 +297,80 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void labelFinanceiroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelFinanceiroMouseClicked
            if (Formularios.ListDespesas == null)
-            Formularios.ListDespesas = new ListDespesas();
+               Formularios.ListDespesas = new ListDespesas();
 
         Formularios.ListDespesas.setVisible(true);
     }//GEN-LAST:event_labelFinanceiroMouseClicked
+
+    private void labelContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelContaMouseClicked
+        if (Formularios.ListMeusDados == null)
+            Formularios.ListMeusDados = new ListMeusDados();
+
+        Formularios.ListMeusDados.setVisible(true);
+    }//GEN-LAST:event_labelContaMouseClicked
+
+    private void labelPlanejamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelPlanejamentoMouseClicked
+           if (Formularios.ListPlanejamentoDiario == null)
+               Formularios.ListPlanejamentoDiario = new ListPlanejamentoDiario();
+
+        Formularios.ListPlanejamentoDiario.setVisible(true);
+    }//GEN-LAST:event_labelPlanejamentoMouseClicked
+
+    private void labelTrabalhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelTrabalhoMouseClicked
+         if (Formularios.ListTrabalho == null)
+               Formularios.ListTrabalho = new ListTrabalho();
+
+        Formularios.ListTrabalho.setVisible(true);
+    }//GEN-LAST:event_labelTrabalhoMouseClicked
+
+    private void labelEstudoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelEstudoMouseClicked
+          if (Formularios.ListEstudo == null)
+               Formularios.ListEstudo = new ListEstudo();
+
+        Formularios.ListEstudo.setVisible(true);
+    }//GEN-LAST:event_labelEstudoMouseClicked
+
+    private void labelObrigacoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelObrigacoesMouseClicked
+         if (Formularios.ListObrigacoes == null)
+               Formularios.ListObrigacoes = new ListObrigacoes();
+
+        Formularios.ListObrigacoes.setVisible(true);
+    }//GEN-LAST:event_labelObrigacoesMouseClicked
+
+    private void labelMetasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelMetasMouseClicked
+         if (Formularios.ListMetas == null)
+               Formularios.ListMetas = new ListMetas();
+
+        Formularios.ListMetas.setVisible(true);
+    }//GEN-LAST:event_labelMetasMouseClicked
+
+    private void labelHobbiesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelHobbiesMouseClicked
+       if (Formularios.ListHobbies == null)
+               Formularios.ListHobbies = new ListHobbies();
+
+        Formularios.ListHobbies.setVisible(true);
+    }//GEN-LAST:event_labelHobbiesMouseClicked
+
+    private void labelHabitosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelHabitosMouseClicked
+        if (Formularios.ListHabitos == null)
+               Formularios.ListHabitos = new ListHabitos();
+
+        Formularios.ListHabitos.setVisible(true);
+    }//GEN-LAST:event_labelHabitosMouseClicked
+
+    private void labelViagensMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelViagensMouseClicked
+        if (Formularios.ListViagens == null)
+               Formularios.ListViagens = new ListViagens();
+
+        Formularios.ListViagens.setVisible(true);
+    }//GEN-LAST:event_labelViagensMouseClicked
+
+    private void LabelBlocoDeNotasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LabelBlocoDeNotasMouseClicked
+         if (Formularios.ListAnotacoes == null)
+               Formularios.ListAnotacoes = new ListAnotacoes();
+
+        Formularios.ListAnotacoes.setVisible(true);
+    }//GEN-LAST:event_LabelBlocoDeNotasMouseClicked
 
     /**
      * @param args the command line arguments

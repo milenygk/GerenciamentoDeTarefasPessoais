@@ -12,32 +12,18 @@ import java.sql.Date;
  */
 public class ModPessoa {
     private int id;
-    private int idCategoria;
-    private Date data;
-    private String rotinaManha;
-    private String rotinaTarde;
-    private String rotinaNoite;
-    private String tarfasPontuais;
-
-    public ModPessoa(int id, int idCategoria, Date data, String rotinaManha, String rotinaTarde, String rotinaNoite, String tarfasPontuais) {
-        this.id = id;
-        this.idCategoria = idCategoria;
-        this.data = data;
-        this.rotinaManha = rotinaManha;
-        this.rotinaTarde = rotinaTarde;
-        this.rotinaNoite = rotinaNoite;
-        this.tarfasPontuais = tarfasPontuais;
-    }
+    private String nome;
+    private String sobrenome;
+    private String cpf;
+    private String dataDeNascimento;
+    private String genero;
+    private String endereco;
+    private String cidade;
+    private String estado;
+    private String email;
+    private String telefone;
 
     public ModPessoa() {
-    }
-
-    public Date getData() {
-        return data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
     }
 
     public int getId() {
@@ -48,49 +34,89 @@ public class ModPessoa {
         this.id = id;
     }
 
-    public int getIdCategoria() {
-        return idCategoria;
+    public String getNome() {
+        return nome;
     }
 
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getRotinaManha() {
-        return rotinaManha;
+    public String getSobrenome() {
+        return sobrenome;
     }
 
-    public void setRotinaManha(String rotinaManha) {
-        this.rotinaManha = rotinaManha;
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
     }
 
-    public String getRotinaNoite() {
-        return rotinaNoite;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setRotinaNoite(String rotinaNoite) {
-        this.rotinaNoite = rotinaNoite;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    public String getRotinaTarde() {
-        return rotinaTarde;
+    public String getDataDeNascimento() {
+        return dataDeNascimento;
     }
 
-    public void setRotinaTarde(String rotinaTarde) {
-        this.rotinaTarde = rotinaTarde;
+    public void setDataDeNascimento(String dataDeNascimento) {
+        this.dataDeNascimento = dataDeNascimento;
     }
 
-    public String getTarfasPontuais() {
-        return tarfasPontuais;
+    public String getGenero() {
+        return genero;
     }
 
-    public void setTarfasPontuais(String tarfasPontuais) {
-        this.tarfasPontuais = tarfasPontuais;
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
- @Override
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    @Override
     public String toString() {
-        return "ModDespesas{"+ "id=" + id + ", idCategoria=" + idCategoria + ", data=" + data + ", rotinaManha=" + rotinaManha +  ", rotinaNoite=" + rotinaNoite + ",rotinaTarde=" +rotinaTarde + ", tarfasPontuais=" + tarfasPontuais + '}';
-    }    
+        return "ModPessoa{" + "id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", cpf=" + cpf + ", dataDeNascimento=" + dataDeNascimento + ", genero=" + genero + ", endereco=" + endereco + ", cidade=" + cidade + ", estado=" + estado + ", email=" + email + ", telefone=" + telefone + '}';
+    }
     
 }

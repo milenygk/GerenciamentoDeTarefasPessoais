@@ -12,41 +12,31 @@ import java.sql.Date;
  */
 public class ModDespesas {
     private int id;
-    private int idCategoria;
-    private Date data;
+    private String data;
     private String descricao;
     private String categoria;
-    private int valor;
+    private double valor;
     private int quantidade;
-    private int total;
+    private double total;
 
-    public ModDespesas() {
+    @Override
+    public String toString() {
+        return "ModDespesas{" + "id=" + id + ", data=" + data + ", descricao=" + descricao + ", categoria=" + categoria + ", valor=" + valor + ", quantidade=" + quantidade + ", total=" + total + '}';
     }
 
-    public ModDespesas(int id, int id_categoria, Date data, String descricao, String categoria, int valor, int quantidade, int total) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
         this.id = id;
-        this.idCategoria = id_categoria;
-        this.data = data;
-        this.descricao = descricao;
-        this.categoria = categoria;
-        this.valor = valor;
-        this.quantidade = quantidade;
-        this.total = total;
     }
 
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 
@@ -58,20 +48,20 @@ public class ModDespesas {
         this.descricao = descricao;
     }
 
-    public int getId() {
-        return id;
+    public String getCategoria() {
+        return categoria;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
-    public int getId_categoria() {
-        return idCategoria;
+    public double getValor() {
+        return valor;
     }
 
-    public void setId_categoria(int id_categoria) {
-        this.idCategoria = id_categoria;
+    public void setValor(double valor) {
+        this.valor = valor;
     }
 
     public int getQuantidade() {
@@ -82,24 +72,15 @@ public class ModDespesas {
         this.quantidade = quantidade;
     }
 
-    public int getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 
-    public int getValor() {
-        return valor;
+    public ModDespesas() {
     }
 
-    public void setValor(int valor) {
-        this.valor = valor;
-    }
-    
-      @Override
-    public String toString() {
-        return "ModDespesas{"+ "id=" + id + ", idCategoria=" + idCategoria + ", data=" + data + ", descricao=" + descricao +  ", categoria=" + categoria + ",valor=" +valor + ", total=" + total+ ",quantidade=" + quantidade + '}';
-    }
 }

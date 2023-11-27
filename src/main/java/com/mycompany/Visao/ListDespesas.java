@@ -6,7 +6,10 @@ package com.mycompany.Visao;
 
 import com.mycompany.Dao.DaoDespesas;
 import static com.mycompany.Ferramentas.ConexaoBancoDeDadosMySql.getStatement;
+import com.mycompany.Ferramentas.DadosTemporarios;
 import com.mycompany.Ferramentas.Formularios;
+import com.mycompany.Modelo.ModDespesas;
+import com.mycompany.Modelo.ModPessoa;
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 
@@ -246,6 +249,11 @@ public class ListDespesas extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tableDespesas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableDespesasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableDespesas);
 
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -365,6 +373,30 @@ public class ListDespesas extends javax.swing.JFrame {
 
         Formularios.despesas.setVisible(true);
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void tableDespesasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableDespesasMouseClicked
+       try{
+            if (evt.getClickCount() == 2){
+ 
+                ModDespesas modDespesas = new ModDespesas();
+ 
+                modDespesas.setId(Integer.parseInt(String.valueOf(tableDespesas.getValueAt(tableDespesas.getSelectedRow(), 0))));
+                modDespesas.setData(String.valueOf(tableDespesas.getValueAt(tableDespesas.getSelectedRow(), 1)));
+                modDespesas.setDescricao(String.valueOf(tableDespesas.getValueAt(tableDespesas.getSelectedRow(), 2)));
+                modDespesas.setCategoria(String.valueOf(tableDespesas.getValueAt(tableDespesas.getSelectedRow(), 3)));
+                modDespesas.setValor(Double.parseDouble(String.valueOf(tableDespesas.getValueAt(tableDespesas.getSelectedRow(), 4))));
+                modDespesas.setTotal(Double.parseDouble(String.valueOf(tableDespesas.getValueAt(tableDespesas.getSelectedRow(), 5))));
+                modDespesas.setQuantidade(Integer.parseInt(String.valueOf(tableDespesas.getValueAt(tableDespesas.getSelectedRow(), 6))));
+                
+                DadosTemporarios.tempObject = (ModDespesas) modDespesas;
+                
+                Despesas despesas = new Despesas();
+                despesas.setVisible(true);
+            }
+        }catch(Exception e ){
+              System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_tableDespesasMouseClicked
 
     /**
      * @param args the command line arguments
