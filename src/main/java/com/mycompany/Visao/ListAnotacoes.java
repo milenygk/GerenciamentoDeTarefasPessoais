@@ -4,7 +4,11 @@
  */
 package com.mycompany.Visao;
 
+import com.mycompany.Dao.DaoAnotacoes;
+import com.mycompany.Dao.DaoMetas;
 import com.mycompany.Ferramentas.Formularios;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,6 +21,78 @@ public class ListAnotacoes extends javax.swing.JFrame {
      */
     public ListAnotacoes() {
         initComponents();
+        
+         setLocationRelativeTo(null);
+        
+        listarTodos();
+    }
+
+    public void listarTodos(){
+        try{
+           
+            DefaultTableModel defaultTableModel = (DefaultTableModel) tableAnotacoes.getModel();
+            
+            tableAnotacoes.setModel(defaultTableModel);
+
+            DaoAnotacoes daoAnotacoes = new DaoAnotacoes();
+
+            ResultSet resultSet = daoAnotacoes.listarTodos();
+            
+            defaultTableModel.setRowCount(0);
+            while (resultSet.next()){
+                String data = resultSet.getString(1);
+                String anotacao = resultSet.getString(2);
+                
+         defaultTableModel.addRow(new Object[]{data, anotacao});           
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void listarPorAnotacoes(){
+            try{
+          
+                DefaultTableModel defaultTableModel = (DefaultTableModel) tableAnotacoes.getModel();
+            
+                tableAnotacoes.setModel(defaultTableModel);
+
+                DaoAnotacoes daoAnotacoes = new DaoAnotacoes();
+
+                ResultSet resultSet = daoAnotacoes.listarPorAnotacoes(tfFiltro.getText());
+            
+           defaultTableModel.setRowCount(0);
+           while (resultSet.next()){
+                String data = resultSet.getString(1);
+                String anotacao = resultSet.getString(2);
+                
+         defaultTableModel.addRow(new Object[]{data, anotacao});   
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+     
+       public void listarPorData(){
+        try{
+             DefaultTableModel defaultTableModel = (DefaultTableModel) tableAnotacoes.getModel();
+            
+                tableAnotacoes.setModel(defaultTableModel);
+
+                DaoAnotacoes daoAnotacoes = new DaoAnotacoes();
+
+              ResultSet resultSet = daoAnotacoes.listarPorData(tfFiltro.getText());
+            
+           defaultTableModel.setRowCount(0);
+           while (resultSet.next()){
+                String data = resultSet.getString(1);
+                String anotacao = resultSet.getString(2);
+                
+         defaultTableModel.addRow(new Object[]{data, anotacao});   
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
@@ -72,6 +148,11 @@ public class ListAnotacoes extends javax.swing.JFrame {
 
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnBuscar.setText("BUSCAR");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         jcbTipoFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Data" }));
 
@@ -144,6 +225,21 @@ public class ListAnotacoes extends javax.swing.JFrame {
 
         Formularios.Anotacoes.setVisible(true);
     }//GEN-LAST:event_btnAdicionarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+         switch (jcbTipoFiltro.getSelectedIndex()){
+            case 0:
+                listarTodos();
+                break;
+            case 1:
+                listarPorData();
+                break;
+            case 2:
+                listarPorAnotacoes();
+                break;
+          
+         }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments

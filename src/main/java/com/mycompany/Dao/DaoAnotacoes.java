@@ -18,9 +18,9 @@ import java.sql.ResultSet;
 public class DaoAnotacoes {
      private String sql;
     
-    public Boolean inserir(int id, int idcategoria, String data, String anotacoes){
+    public Boolean inserir(int id, String data, String anotacoes){
         try{
-            sql ="INSERT INTO ANOTACOES (ID, ID_CATEGORIA, DATA, ANOTACOES) VALUES (?, ?, ?, ?)";
+            sql ="INSERT INTO ANOTACOES (ID, DATA, ANOTACOES) VALUES (?, ?, ?, ?)";
             
            setStatement(getConexao().prepareStatement(sql));
             
@@ -37,7 +37,7 @@ public class DaoAnotacoes {
         }
     }
     
-     public Boolean alterar(int id, int idcategoria, String data, String anotacoes){
+     public Boolean alterar(int id, String data, String anotacoes){
         try{ 
             sql = "UPDATE ANOTACOES SET DATA = ?, ANOTACOES = ? WHERE ID = ?";
             
@@ -114,7 +114,7 @@ public class DaoAnotacoes {
         return getResultado();
     }
      
-     public ResultSet listarPorData(String data){
+     public ResultSet listarPorData(String pData){
         try{ 
             sql =   "SELECT                    " +
                     "ANO.ID AS ID,             " +
@@ -128,7 +128,7 @@ public class DaoAnotacoes {
             
         setStatement(getConexao().prepareStatement(sql));
             
-        getStatement().setString(1, data);
+        getStatement().setString(1, pData);
             
             setResultado(getStatement().executeQuery());
         }catch(Exception e){
@@ -138,7 +138,7 @@ public class DaoAnotacoes {
         return getResultado();
     }
      
-      public ResultSet listarPorObrigacao(String anotacoes){
+      public ResultSet listarPorAnotacoes(String anotacoes){
         try{
             sql =   "SELECT                    " +
                     "ANO.ID AS ID,             " +

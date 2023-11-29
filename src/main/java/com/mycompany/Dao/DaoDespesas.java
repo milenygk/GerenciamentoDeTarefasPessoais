@@ -20,15 +20,14 @@ import java.sql.ResultSet;
 public class DaoDespesas {
     private String sql;
     
-    public Boolean inserir(int id, String data, String descricao, String categoria,
-            double valor, double total, int quantidade){
+    public Boolean inserir( int quantidade, String data, String descricao, String categoria, double valor, double total, int parseInt1){
         try{
             sql = "INSERT INTO FINANCEIRO (ID, DATA, DESCRICAO, "
                     + "CATEGORIA, VALOR, TOTAL, QUANTIDADE) VALUES (?, ?, ?, ?, ?, ?, ?)";
             
           setStatement(getConexao().prepareStatement(sql));
             
-           getStatement().setInt(1, id);
+//           getStatement().setInt(1, id);
            getStatement().setString(2, data);
            getStatement().setString(3, descricao);
            getStatement().setString(4, categoria);
@@ -92,7 +91,7 @@ public class DaoDespesas {
     public ResultSet listarTodos(){
         try{
             sql =   " SELECT                               " +
-//                    "FIN.ID as ID,                         " +
+                    "FIN.ID as ID,                         " +
                     "FIN.data as DATA_COMPRA,              " +
                     "FIN.DESCRICAO as DESCRICAO_COMPRA,    " +
                     "FIN.CATEGORIA as CATEGORIA_COMPRA,    " +
@@ -114,7 +113,7 @@ public class DaoDespesas {
     public ResultSet listarPorId(int id){
         try{
             sql =   " SELECT                              " +
-//                    "FIN.ID as ID,                         " +
+                    "FIN.ID as ID,                         " +
                     "FIN.data as DATA_COMPRA,              " +
                     "FIN.DESCRICAO as DESCRICAO_COMPRA,    " +
                     "FIN.CATEGORIA as CATEGORIA_COMPRA,    " +
@@ -141,7 +140,7 @@ public class DaoDespesas {
    public ResultSet listarPorData(String data){
         try{ 
             sql =   " SELECT                               " + 
-//                    "FIN.ID as ID,                         " +
+                    "FIN.ID as ID,                         " +
                     "FIN.data as DATA_COMPRA,              " +
                     "FIN.DESCRICAO as DESCRICAO_COMPRA,    " +
                     "FIN.CATEGORIA as CATEGORIA_COMPRA,    " +
@@ -152,6 +151,7 @@ public class DaoDespesas {
                     "FIANANCEIRO FIN                       " +
                     "WHERE                                 " +
                     "FIN.DATA  LIKE ?                      "; 
+            
         setStatement(getConexao().prepareStatement(sql));
             
             getStatement().setString(1, data);
@@ -167,7 +167,7 @@ public class DaoDespesas {
     public ResultSet listarPorDescricao(String descricao){
         try{
             sql =   " SELECT                               " + 
-//                    "FIN.ID as ID,                         " +
+                    "FIN.ID as ID,                         " +
                     "FIN.data as DATA_COMPRA,              " +
                     "FIN.DESCRICAO as DESCRICAO_COMPRA,    " +
                     "FIN.CATEGORIA as CATEGORIA_COMPRA,    " +
@@ -194,7 +194,7 @@ public class DaoDespesas {
      public ResultSet listarPorCategoria(String pCategoria){
         try{
             sql =   " SELECT                               " + 
-//                    "FIN.ID as ID,                         " +
+                    "FIN.ID as ID,                         " +
                     "FIN.data as DATA_COMPRA,              " +
                     "FIN.DESCRICAO as DESCRICAO_COMPRA,    " +
                     "FIN.CATEGORIA as CATEGORIA_COMPRA,    " +
@@ -220,7 +220,7 @@ public class DaoDespesas {
       public ResultSet listarPorQuantidade(int pQuantidade){
         try{
             sql =   " SELECT                               " + 
-//                    "FIN.ID as ID,                         " +
+                    "FIN.ID as ID,                         " +
                     "FIN.data as DATA_COMPRA,              " +
                     "FIN.DESCRICAO as DESCRICAO_COMPRA,    " +
                     "FIN.CATEGORIA as CATEGORIA_COMPRA,    " +
@@ -246,7 +246,7 @@ public class DaoDespesas {
      public ResultSet listarPorValor(int pValor){
         try{
             sql =   " SELECT                               " + 
-//                    "FIN.ID as ID,                         " +
+                    "FIN.ID as ID,                         " +
                     "FIN.data as DATA_COMPRA,              " +
                     "FIN.DESCRICAO as DESCRICAO_COMPRA,    " +
                     "FIN.CATEGORIA as CATEGORIA_COMPRA,    " +
@@ -272,7 +272,7 @@ public class DaoDespesas {
      public ResultSet listarPorTotal(int pTotal){
         try{
             sql =   " SELECT                               " + 
-//                    "FIN.ID as ID,                         " +
+                    "FIN.ID as ID,                         " +
                     "FIN.data as DATA_COMPRA,              " +
                     "FIN.DESCRICAO as DESCRICAO_COMPRA,    " +
                     "FIN.CATEGORIA as CATEGORIA_COMPRA,    " +

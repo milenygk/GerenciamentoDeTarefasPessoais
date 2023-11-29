@@ -1,6 +1,7 @@
 com\mycompany\Visao\ListAnotacoes.class
 com\mycompany\Visao\MenuPrincipal$3.class
 com\mycompany\Visao\ListTrabalho.class
+com\mycompany\Visao\MeusDados$2.class
 com\mycompany\Visao\Anotacoes.class
 com\mycompany\gerenciamentotarefaspessoais\GerenciamentoTarefasPessoais.class
 com\mycompany\Modelo\ModPessoa.class
@@ -30,10 +31,12 @@ com\mycompany\Visao\ListMeusDados$4.class
 com\mycompany\Visao\ListAnotacoes$2.class
 com\mycompany\Visao\ListMetas.class
 com\mycompany\Dao\DaoMetas.class
+com\mycompany\Visao\Metas$3.class
 com\mycompany\Visao\Despesas$2.class
 com\mycompany\Visao\ListHabitos.class
 com\mycompany\Visao\MenuPrincipal$8.class
 com\mycompany\Visao\ListPlanejamentoDiario$4.class
+com\mycompany\Visao\MeusDados$3.class
 com\mycompany\Dao\DaoHabitos.class
 com\mycompany\Ferramentas\Constantes.class
 com\mycompany\Visao\MenuPrincipal$1.class
@@ -42,6 +45,7 @@ com\mycompany\Visao\Hobbies$1.class
 com\mycompany\Visao\ListAnotacoes$3.class
 com\mycompany\Dao\DaoObrigacoes.class
 com\mycompany\Visao\ListPlanejamentoDiario$3.class
+com\mycompany\Visao\Metas$2.class
 com\mycompany\Modelo\ModViagens.class
 com\mycompany\Visao\ListHobbies$1.class
 com\mycompany\Visao\ListObrigacoes.class
@@ -61,6 +65,7 @@ com\mycompany\Visao\ListObrigacoes$1.class
 com\mycompany\Visao\Despesas$4.class
 com\mycompany\Visao\PlanejamentoDiario.class
 com\mycompany\Visao\Habitos.class
+com\mycompany\Visao\ListAnotacoes$4.class
 com\mycompany\Modelo\ModAnotacoes.class
 com\mycompany\Visao\ListMeusDados$2.class
 com\mycompany\Visao\ListEstudo.class
@@ -78,13 +83,17 @@ com\mycompany\Visao\Metas$1.class
 com\mycompany\Visao\MeusDados.class
 com\mycompany\Visao\Metas.class
 com\mycompany\Visao\ListAnotacoes$1.class
+com\mycompany\Visao\ListMetas$5.class
 com\mycompany\Visao\MeusDados$1.class
 com\mycompany\Dao\DaoEstudo.class
+com\mycompany\Visao\MeusDados$4.class
 com\mycompany\Visao\ListHobbies$2.class
 com\mycompany\Visao\Estudo.class
 com\mycompany\Visao\MenuPrincipal$5.class
 com\mycompany\Visao\MenuPrincipal$11.class
 com\mycompany\Visao\MenuPrincipal$2.class
+com\mycompany\Visao\Anotacoes$2.class
+com\mycompany\Visao\ListMetas$4.class
 com\mycompany\Visao\Viagens.class
 com\mycompany\Visao\ListDespesas.class
 com\mycompany\Visao\MenuPrincipal$12.class
@@ -109,6 +118,7 @@ com\mycompany\Modelo\ModTrabalho.class
 com\mycompany\Visao\MenuPrincipal$4.class
 com\mycompany\Dao\DaoViagens.class
 com\mycompany\Modelo\ModHabitos.class
+com\mycompany\Visao\Anotacoes$3.class
 com\mycompany\Visao\ListTrabalho$1.class
 com\mycompany\Visao\ListMetas$3.class
 com\mycompany\Visao\ListEstudo$2.class

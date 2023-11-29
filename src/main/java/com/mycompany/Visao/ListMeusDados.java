@@ -28,7 +28,7 @@ public class ListMeusDados extends javax.swing.JFrame {
         listarTodos();;
     }
     
-    private void listarTodos(){
+    void listarTodos(){
         try{
             DefaultTableModel defaultTableModel = (DefaultTableModel) tablePessoa.getModel();
             

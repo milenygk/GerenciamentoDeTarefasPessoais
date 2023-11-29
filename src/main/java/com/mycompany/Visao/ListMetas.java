@@ -4,7 +4,12 @@
  */
 package com.mycompany.Visao;
 
+import com.mycompany.Dao.DaoMetas;
+import com.mycompany.Ferramentas.DadosTemporarios;
 import com.mycompany.Ferramentas.Formularios;
+import com.mycompany.Modelo.ModMetas;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,8 +22,110 @@ public class ListMetas extends javax.swing.JFrame {
      */
     public ListMetas() {
         initComponents();
+         setLocationRelativeTo(null);
+        
+        listarTodos();
     }
 
+     public void listarTodos(){
+        try{
+           
+            DefaultTableModel defaultTableModel = (DefaultTableModel) tableMetas.getModel();
+            
+            tableMetas.setModel(defaultTableModel);
+
+            DaoMetas daoMetas = new DaoMetas();
+
+            ResultSet resultSet = daoMetas.listarTodos();
+            
+            defaultTableModel.setRowCount(0);
+            while (resultSet.next()){
+                int id = resultSet.getInt(1);
+                String ano = resultSet.getString(3);
+                String categoria = resultSet.getString(4);
+                String meta = resultSet.getString(2);
+                
+         defaultTableModel.addRow(new Object[]{id, ano, categoria, meta});           
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void listarPorCategoria(){
+            try{
+          
+                DefaultTableModel defaultTableModel = (DefaultTableModel) tableMetas.getModel();
+            
+                tableMetas.setModel(defaultTableModel);
+
+                DaoMetas daoMetas = new DaoMetas();
+
+                ResultSet resultSet = daoMetas.listarPorCategoria(tfFiltro.getText());
+            
+           defaultTableModel.setRowCount(0);
+           while (resultSet.next()){
+                int id = resultSet.getInt(1);
+                String ano = resultSet.getString(3);
+                String categoria = resultSet.getString(4);
+                String meta = resultSet.getString(2);
+                
+                defaultTableModel.addRow(new Object[]{id, ano, categoria, meta});
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+     public void listarPorMeta(){
+            try{
+          
+                DefaultTableModel defaultTableModel = (DefaultTableModel) tableMetas.getModel();
+            
+                tableMetas.setModel(defaultTableModel);
+
+                DaoMetas daoMetas = new DaoMetas();
+
+                ResultSet resultSet = daoMetas.listarPorMeta(tfFiltro.getText());
+            
+           defaultTableModel.setRowCount(0);
+           while (resultSet.next()){
+               int id = resultSet.getInt(1);
+                String ano = resultSet.getString(3);
+                String categoria = resultSet.getString(4);
+                String meta = resultSet.getString(2);
+                
+                defaultTableModel.addRow(new Object[]{id, ano, categoria, meta});
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+     
+       public void listarPorAno(int pAno){
+        try{
+             DefaultTableModel defaultTableModel = (DefaultTableModel) tableMetas.getModel();
+            
+                tableMetas.setModel(defaultTableModel);
+
+                DaoMetas daoMetas = new DaoMetas();
+
+                ResultSet resultSet = daoMetas.listarPorAno(pAno);
+            
+           defaultTableModel.setRowCount(0);
+           while (resultSet.next()){
+               int id = resultSet.getInt(1);
+                String ano = resultSet.getString(3);
+                String categoria = resultSet.getString(4);
+                String meta = resultSet.getString(2);
+                
+                defaultTableModel.addRow(new Object[]{id, ano, categoria, meta});
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,51 +136,61 @@ public class ListMetas extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnAdicionar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableMetas = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        tfFiltro = new javax.swing.JTextField();
+        jcbTipoFiltro = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setText("ADICIONAR UMA NOVA META");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAdicionar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAdicionar.setText("ADICIONAR UMA NOVA META");
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAdicionarActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setText("BUSCAR");
+        btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBuscar.setText("BUSCAR");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableMetas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Ano", "Categoria", "Meta"
+                "Id", "Meta", "Ano", "Categoria"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        tableMetas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMetasMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tableMetas);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel1.setText("LISTA DE METAS");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos ", "Ano", "Categoria", "Meta" }));
+        jcbTipoFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos ", "Ano", "Categoria", "Meta" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -88,13 +205,13 @@ public class ListMetas extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(btnBuscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addComponent(btnAdicionar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jcbTipoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1)))
+                        .addComponent(tfFiltro)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -104,14 +221,14 @@ public class ListMetas extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbTipoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnAdicionar)
+                    .addComponent(btnBuscar))
                 .addContainerGap())
         );
 
@@ -135,12 +252,44 @@ public class ListMetas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
              if (Formularios.metas == null)
             Formularios.metas = new Metas();
 
         Formularios.metas.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAdicionarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+         switch (jcbTipoFiltro.getSelectedIndex()){
+            case 0:
+                listarTodos();
+                break;
+            case 1:
+                listarPorAno(Integer.parseInt(tfFiltro.getText()));
+                break;
+            case 2:
+                listarPorCategoria();
+                break;
+           case 3:
+               listarPorMeta();
+              break;
+         }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void tableMetasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMetasMouseClicked
+         if (evt.getClickCount() == 2){
+             ModMetas modMetas = new ModMetas();
+
+            modMetas.setAno(Integer.parseInt(String.valueOf(tableMetas.getValueAt(tableMetas.getSelectedRow(), 0))));
+            modMetas.setCategoria(String.valueOf(tableMetas.getValueAt(tableMetas.getSelectedRow(), 1)));
+            modMetas.setMeta(String.valueOf(tableMetas.getValueAt(tableMetas.getSelectedRow(), 2)));
+            
+             DadosTemporarios.tempObject = (ModMetas) modMetas;
+
+            Metas metas = new Metas();
+            metas.setVisible(true);
+    }                                     
+    }//GEN-LAST:event_tableMetasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -178,13 +327,13 @@ public class ListMetas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton btnAdicionar;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox<String> jcbTipoFiltro;
+    private javax.swing.JTable tableMetas;
+    private javax.swing.JTextField tfFiltro;
     // End of variables declaration//GEN-END:variables
 }

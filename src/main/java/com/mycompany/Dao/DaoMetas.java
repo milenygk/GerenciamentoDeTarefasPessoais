@@ -18,18 +18,17 @@ import java.sql.ResultSet;
 public class DaoMetas {
     String sql;
     
-    public Boolean inserir(int id, int idCategoria, String meta, int ano, String categoria){
+    public Boolean inserir(int id, String meta, int ano, String categoria){
          try{
-            sql = "INSERT INTO METAS (ID, ID_CATEGORIA, META, ANO, "
-                    + "CATEGORIA) VALUES (?, ?, ?, ?, ?)";
+            sql = "INSERT INTO METAS (ID, META, ANO, "
+                    + "CATEGORIA) VALUES (?, ?, ?, ?)";
             
           setStatement(getConexao().prepareStatement(sql));
             
            getStatement().setInt(1, id);
-           getStatement().setInt(2, idCategoria);
-           getStatement().setString(3, meta);
-           getStatement().setInt(4, ano);
-           getStatement().setString(5, categoria);
+           getStatement().setString(2, meta);
+           getStatement().setInt(3, ano);
+           getStatement().setString(4, categoria);
 
            getStatement().executeUpdate();
             
@@ -40,7 +39,7 @@ public class DaoMetas {
         }
     }
     
-    public Boolean alterar(int id, int idCategoria, String meta, int ano, String categoria){
+    public Boolean alterar(int id, String meta, int ano, String categoria){
          try{
                sql = "UPDATE METAS SET META = ?, ANO = ?,"
                     + " CATEGORIA = ? WHERE ID = ?";
@@ -146,7 +145,7 @@ public class DaoMetas {
         return getResultado();
     }
      
-    public ResultSet listarPorAno(int ano){
+    public ResultSet listarPorAno(int pAno){
         try{
             sql =  
                     " SELECT                    " +
@@ -161,7 +160,7 @@ public class DaoMetas {
             
               setStatement(getConexao().prepareStatement(sql));
             
-         getStatement().setInt(1, ano);
+         getStatement().setInt(1, pAno);
             
             setResultado(getStatement().executeQuery());
         }catch(Exception e){

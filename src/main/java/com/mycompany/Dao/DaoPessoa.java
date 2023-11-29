@@ -15,7 +15,7 @@ public class DaoPessoa extends ConexaoBancoDeDadosMySql{
     String sql;
     
     public Boolean inserir(int id, String nome, String sobrenome, String cpf, String DataDeNascimento, String genero,
-            String telefone, String email, String endereco, String cidade, String estado, String usuario, String senha){
+            String telefone, String email, String endereco, String cidade, String estado){
         try{
             sql = "INSERT INTO PESSOA (ID, NOME, SOBRENOME, CPF, DATADENASCIMENTO, GENERO, TELEFONE,"
                     + "EMAIL, ENDERECO, CIDADE, ESTADO) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -44,7 +44,7 @@ public class DaoPessoa extends ConexaoBancoDeDadosMySql{
     }
     
     public Boolean alterar(int id, String nome, String sobrenome, String cpf, String DataDeNascimento, String genero,
-            String telefone, String email, String endereco, String cidade, String estado, String usuario, String senha){
+            String telefone, String email, String endereco, String cidade, String estado){
         try{
             sql = "UPDATE PESSOA SET NOME = ?, SOBRENOME = ?, CPF = ?, DATADENASCIMENTO = ?,"
                     + " GENERO = ?, TELEFONE = ?, EMAIL = ?, ENDERECO = ?, CIDADE = ?, ESTADO = ?, "
@@ -74,23 +74,6 @@ public class DaoPessoa extends ConexaoBancoDeDadosMySql{
         }
     }
     
-     public Boolean alterarSenha(int id, String novaSenha){
-        try{
-            sql = "UPDATE PESSOA SET SENHA = ? WHERE ID = ?";
-            
-            setStatement(getConexao().prepareStatement(sql));
-            
-            getStatement().setInt(2, id);
-            getStatement().setString(1, novaSenha);
-            
-            getStatement().executeUpdate();
-            
-            return true;
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-            return false;
-        }
-    }
      
       public ResultSet listarTodos(){
         try{
@@ -490,25 +473,24 @@ public class DaoPessoa extends ConexaoBancoDeDadosMySql{
         }
     }
      
-     public ResultSet recuperaSenha(String usuario){
+     
+       public int buscarProximoId(){
+        int id = -1;
+        
         try{
-            sql = 
-                " SELECT                            " +
-                "   ID,                             " +
-                "   SENHA                           " +
-                " FROM                              " +
-                "   PESSOA                          " +
-                " WHERE USUARIO = ?                 " ;
+            sql = "SELECT MAX(ID) + 1 FROM TRABALHO";
             
             setStatement(getConexao().prepareStatement(sql));
             
-            getStatement().setString(1, usuario);
-            
             setResultado(getStatement().executeQuery());
+            
+            getResultado().next();
+            
+            id = getResultado().getInt(1); 
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
         
-        return getResultado();
+        return id;        
     }
 }

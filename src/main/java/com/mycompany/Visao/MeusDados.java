@@ -4,6 +4,13 @@
  */
 package com.mycompany.Visao;
 
+import com.mycompany.Dao.DaoPessoa;
+import com.mycompany.Ferramentas.Constantes;
+import com.mycompany.Ferramentas.DadosTemporarios;
+import com.mycompany.Ferramentas.Formularios;
+import com.mycompany.Modelo.ModPessoa;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mileny.1948
@@ -15,8 +22,118 @@ public class MeusDados extends javax.swing.JFrame {
      */
     public MeusDados() {
         initComponents();
-    }
+        
+         if(!existeDadosTemporarios()){
+            DaoPessoa daoPessoa = new DaoPessoa();
+            
+            int id = daoPessoa.buscarProximoId(); 
+             tfId.setText(String.valueOf(id));
+              if (id > 0){
+            }
+            
+            btnAcao.setText(Constantes.BTN_SALVAR_TEXT);
+            btnExcluir.setVisible(false);
+        }else{
+            btnAcao.setText(Constantes.BTN_ALTERAR_TEXT);
+            btnExcluir.setVisible(true);
+         }
 
+          tfId.setEnabled(false);
+        
+ }
+
+     private Boolean existeDadosTemporarios(){        
+        if(DadosTemporarios.tempObject instanceof ModPessoa){
+            int id = ((ModPessoa) DadosTemporarios.tempObject).getId();
+            String Endereco = ((ModPessoa) DadosTemporarios.tempObject).getEndereco();
+            String nome = ((ModPessoa) DadosTemporarios.tempObject).getNome();
+            String sobrenome = ((ModPessoa) DadosTemporarios.tempObject).getSobrenome();
+            String genero = ((ModPessoa) DadosTemporarios.tempObject).getGenero();
+            String telefone = ((ModPessoa) DadosTemporarios.tempObject).getTelefone();
+            String email = ((ModPessoa) DadosTemporarios.tempObject).getEmail();
+            String dataNascimento = ((ModPessoa) DadosTemporarios.tempObject).getDataDeNascimento();
+            String cpf = ((ModPessoa) DadosTemporarios.tempObject).getCpf();
+            String Cidade = ((ModPessoa) DadosTemporarios.tempObject).getCidade();
+            String Estado = ((ModPessoa) DadosTemporarios.tempObject).getEstado();
+            
+            tfId.setText(String.valueOf(id));
+            tfEndereco.setText(String.valueOf(Endereco));
+            tfEstado.setText(String.valueOf(Estado));
+            tfNome.setText(nome);
+            tfSobrenome.setText(sobrenome);
+            tfTelefone.setText(telefone);
+            tfEmail.setText(email);
+            tfDataDeNascimento.setText(dataNascimento);
+            tfCpf.setText(cpf);
+            tfCidade.setText(Cidade);
+            tfGenero.setText(genero);
+            
+      DadosTemporarios.tempObject = null;
+            
+            return true;
+        }else
+            return false;
+        }
+     
+    private void inserir(){
+        DaoPessoa daoPessoa = new DaoPessoa();
+             if(daoPessoa.inserir(Integer.parseInt(tfId.getText()), tfNome.getText(), tfSobrenome.getText(), tfCpf.getText(), tfDataDeNascimento.getText(), tfGenero.getText(), tfTelefone.getText(), tfEmail.getText(), tfEndereco.getText(), tfCidade.getText(), tfEstado.getText())){
+                  JOptionPane.showMessageDialog(null, "Pessoa salva com sucesso!");
+            
+            tfNome.setText("");
+            tfSobrenome.setText("");
+            tfCpf.setText("");
+            tfDataDeNascimento.setText("");
+            tfGenero.setText("");
+            tfTelefone.setText("");
+            tfEmail.setText("");
+            tfEndereco.setText("");
+            tfCidade.setText("");
+            tfEstado.setText("");
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Não foi possível salvar a pessoa!");
+        }
+    }
+ 
+     private void alterar(){
+        DaoPessoa daoPessoa = new DaoPessoa();
+         if(daoPessoa.alterar(Integer.parseInt(tfId.getText()), tfNome.getText(), tfSobrenome.getText(), tfCpf.getText(), tfDataDeNascimento.getText(), tfGenero.getText(), tfTelefone.getText(), tfEmail.getText(), tfEndereco.getText(), tfCidade.getText(), tfEstado.getText())){
+              JOptionPane.showMessageDialog(null, "Pessoa alterada com sucesso!");
+            
+            tfNome.setText("");
+            tfSobrenome.setText("");
+            tfCpf.setText("");
+            tfDataDeNascimento.setText("");
+            tfGenero.setText("");
+            tfTelefone.setText("");
+            tfEmail.setText("");
+            tfEndereco.setText("");
+            tfCidade.setText("");
+            tfEstado.setText("");
+             
+        }else{
+            JOptionPane.showMessageDialog(null, "Não foi possível alterar a pessoa!");
+        }
+        
+        ((ListMeusDados) Formularios.ListMeusDados).listarTodos();
+        
+        dispose();
+    }
+     
+      private void excluir(){
+        DaoPessoa daoPessoa = new DaoPessoa();
+        
+        if (daoPessoa.excluir(Integer.parseInt(tfId.getText())))
+            JOptionPane.showMessageDialog(null, "Pessoa excluída com sucesso!");
+        else
+            JOptionPane.showMessageDialog(null, "Não foi possível excluir a pessoa!");
+        
+        ((ListMeusDados) Formularios.ListMeusDados).listarTodos();
+        
+        dispose();
+    }
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,20 +156,19 @@ public class MeusDados extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        tfNome = new javax.swing.JTextField();
+        tfSobrenome = new javax.swing.JTextField();
+        tfCpf = new javax.swing.JTextField();
+        tfDataDeNascimento = new javax.swing.JTextField();
+        tfGenero = new javax.swing.JTextField();
+        tfEndereco = new javax.swing.JTextField();
+        tfCidade = new javax.swing.JTextField();
+        tfEstado = new javax.swing.JTextField();
+        tfTelefone = new javax.swing.JTextField();
+        tfEmail = new javax.swing.JTextField();
+        btnAcao = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         tfId = new javax.swing.JTextField();
-        tfIdCategoria = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -93,15 +209,29 @@ public class MeusDados extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setText("SALVAR");
+        tfSobrenome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfSobrenomeActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setText("EXCLUIR DADOS");
+        btnAcao.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAcao.setText("SALVAR");
+        btnAcao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcaoActionPerformed(evt);
+            }
+        });
+
+        btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnExcluir.setText("EXCLUIR DADOS");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         tfId.setBackground(new java.awt.Color(204, 204, 255));
-
-        tfIdCategoria.setBackground(new java.awt.Color(204, 204, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -114,9 +244,9 @@ public class MeusDados extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jTextField3)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(tfNome)
+                                    .addComponent(tfCpf)
+                                    .addComponent(tfSobrenome, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGap(58, 58, 58))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,30 +255,28 @@ public class MeusDados extends javax.swing.JFrame {
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel12)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(tfDataDeNascimento, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addComponent(jLabel10)
-                                    .addComponent(jTextField10))
+                                    .addComponent(tfEmail))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-                            .addComponent(jTextField7)
+                            .addComponent(tfTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                            .addComponent(tfCidade)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9)
                             .addComponent(jLabel11)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField8)
-                            .addComponent(jTextField6)))
+                            .addComponent(tfGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfEstado)
+                            .addComponent(tfEndereco)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnAcao)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tfIdCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
+                        .addComponent(btnExcluir)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 229, Short.MAX_VALUE)
@@ -166,48 +294,47 @@ public class MeusDados extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfSobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfDataDeNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfIdCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAcao)
+                    .addComponent(btnExcluir)
+                    .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -230,6 +357,34 @@ public class MeusDados extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tfSobrenomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSobrenomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfSobrenomeActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+         int escolha =
+        JOptionPane.showConfirmDialog(
+            null,
+            "Deseja realmente excluir a pessoa?");
+
+        if(escolha == JOptionPane.YES_OPTION){
+            excluir();
+        }                                   
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnAcaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcaoActionPerformed
+         DaoPessoa daoPessoa =  new DaoPessoa();
+        
+        if (btnAcao.getText() == Constantes.BTN_SALVAR_TEXT){
+            inserir();
+                    
+            tfId.setText(String.valueOf(daoPessoa.buscarProximoId()));
+        }else if(btnAcao.getText() == Constantes.BTN_ALTERAR_TEXT){
+            alterar();
+            ((ListMeusDados) Formularios.ListMeusDados).listarTodos();
+        }        
+    }//GEN-LAST:event_btnAcaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,8 +422,8 @@ public class MeusDados extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnAcao;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -282,17 +437,16 @@ public class MeusDados extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField tfCidade;
+    private javax.swing.JTextField tfCpf;
+    private javax.swing.JTextField tfDataDeNascimento;
+    private javax.swing.JTextField tfEmail;
+    private javax.swing.JTextField tfEndereco;
+    private javax.swing.JTextField tfEstado;
+    private javax.swing.JTextField tfGenero;
     private javax.swing.JTextField tfId;
-    private javax.swing.JTextField tfIdCategoria;
+    private javax.swing.JTextField tfNome;
+    private javax.swing.JTextField tfSobrenome;
+    private javax.swing.JTextField tfTelefone;
     // End of variables declaration//GEN-END:variables
 }

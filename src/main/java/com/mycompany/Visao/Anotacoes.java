@@ -4,6 +4,15 @@
  */
 package com.mycompany.Visao;
 
+import com.mycompany.Dao.DaoAnotacoes;
+import com.mycompany.Dao.DaoMetas;
+import com.mycompany.Ferramentas.Constantes;
+import com.mycompany.Ferramentas.DadosTemporarios;
+import com.mycompany.Ferramentas.Formularios;
+import com.mycompany.Modelo.ModAnotacoes;
+import javax.swing.JOptionPane;
+
+
 /**
  *
  * @author mileny.1948
@@ -15,6 +24,82 @@ public class Anotacoes extends javax.swing.JFrame {
      */
     public Anotacoes() {
         initComponents();
+        
+         if(!existeDadosTemporarios()){
+             DaoAnotacoes daoAnotacoes = new DaoAnotacoes();
+
+            int id = daoAnotacoes.buscarProximoId(); 
+            if (id > 0)
+                tfId.setText(String.valueOf(id));
+            
+            btnAcao.setText(Constantes.BTN_SALVAR_TEXT);
+            btnExcluir.setVisible(false);
+        }else{
+            btnAcao.setText(Constantes.BTN_ALTERAR_TEXT);
+            btnExcluir.setVisible(true);
+        }
+         tfId.setVisible(false);
+    }
+    
+     private Boolean existeDadosTemporarios(){        
+        if(DadosTemporarios.tempObject instanceof ModAnotacoes){
+            String data = ((ModAnotacoes) DadosTemporarios.tempObject).getData();
+            String anotacoes = ((ModAnotacoes) DadosTemporarios.tempObject).getAnotacoes();
+            
+            tfData.setText(String.valueOf(data));
+            taAnotacoes.setText(anotacoes);
+        
+            DadosTemporarios.tempObject = null;
+            
+            return true;
+        }else
+            return false;
+    }
+
+       private void inserir(){
+           DaoAnotacoes daoAnotacoes = new DaoAnotacoes();
+           if(daoAnotacoes.inserir(Integer.parseInt(tfId.getText()), tfData.getText(), taAnotacoes.getText())){
+               JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
+            
+            tfData.setText(String.valueOf(""));
+            taAnotacoes.setText("");
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Não foi possível salvar!");
+        }
+        ((ListAnotacoes) Formularios.ListAnotacoes).listarTodos(); 
+        }
+       
+  private void alterar(){
+       DaoAnotacoes daoAnotacoes = new DaoAnotacoes();
+
+           if(daoAnotacoes.alterar(Integer.parseInt(tfId.getText()), tfData.getText(), taAnotacoes.getText())){
+            JOptionPane.showMessageDialog(null, "Categoria alterada com sucesso!");
+            
+            tfData.setText(String.valueOf(""));
+            taAnotacoes.setText("");
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Não foi possível salvar!");
+        }
+        ((ListAnotacoes) Formularios.ListAnotacoes).listarTodos(); 
+        dispose();
+    }       
+
+    private void excluir(){
+       DaoAnotacoes daoAnotacoes = new DaoAnotacoes();
+        
+        if (daoAnotacoes.excluir(Integer.parseInt(tfId.getText()))){
+        JOptionPane.showMessageDialog(null, "Meta " + taAnotacoes.getText() + " excluída com sucesso!");
+            
+            tfData.setText(String.valueOf(""));
+            taAnotacoes.setText("");
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Não foi possível salvar!");
+        }
+        ((ListAnotacoes) Formularios.ListAnotacoes).listarTodos(); 
+        dispose();
     }
 
     /**
@@ -32,7 +117,7 @@ public class Anotacoes extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         taAnotacoes = new javax.swing.JTextArea();
-        btnSalvar = new javax.swing.JButton();
+        btnAcao = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         tfId = new javax.swing.JTextField();
         tfIdCategoria = new javax.swing.JTextField();
@@ -51,11 +136,21 @@ public class Anotacoes extends javax.swing.JFrame {
         taAnotacoes.setRows(5);
         jScrollPane1.setViewportView(taAnotacoes);
 
-        btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnSalvar.setText("SALVAR");
+        btnAcao.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAcao.setText("SALVAR");
+        btnAcao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcaoActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnExcluir.setText("EXCLUIR");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         tfId.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -70,7 +165,7 @@ public class Anotacoes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnSalvar)
+                        .addComponent(btnAcao)
                         .addGap(41, 41, 41)
                         .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(56, 56, 56)
@@ -98,7 +193,7 @@ public class Anotacoes extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalvar)
+                    .addComponent(btnAcao)
                     .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfIdCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -124,6 +219,28 @@ public class Anotacoes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAcaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcaoActionPerformed
+        DaoAnotacoes daoAnotacoes =  new DaoAnotacoes();
+        
+        if (btnAcao.getText() == Constantes.BTN_SALVAR_TEXT){
+            inserir();
+                    
+            tfId.setText(String.valueOf(daoAnotacoes.buscarProximoId()));
+        }else if(btnAcao.getText() == Constantes.BTN_ALTERAR_TEXT){
+            alterar();
+            ((ListMetas) Formularios.ListMetas).listarTodos();
+        }        
+    }//GEN-LAST:event_btnAcaoActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+         int escolha =
+              JOptionPane.showConfirmDialog(null,
+                      "Deseja realmente excluir?" + taAnotacoes.getText() + "?");
+      
+      if(escolha == JOptionPane.YES_OPTION)
+          excluir();
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,8 +278,8 @@ public class Anotacoes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAcao;
     private javax.swing.JButton btnExcluir;
-    private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

@@ -75,7 +75,7 @@ public class Despesas extends javax.swing.JFrame {
         if (daoDespesas.inserir(Integer.parseInt(tfId.getText()), tfData.getText(), taDescricao.getText(), tfCategoria.getText(), Double.parseDouble(tfValor.getText()), Double.parseDouble(lblTotal.getText()), Integer.parseInt(tfQuantidade.getText()))){
             JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
             
-            tfId.setText(String.valueOf(""));
+           
             tfData.setText(String.valueOf(String.valueOf("")));
             taDescricao.setText(String.valueOf(""));
             tfCategoria.setText("");
@@ -115,13 +115,13 @@ public class Despesas extends javax.swing.JFrame {
         if (daoDespesas.alterar(Integer.parseInt(tfId.getText()), tfData.getText(), taDescricao.getText(), tfCategoria.getText(), Double.parseDouble(tfValor.getText()), Double.parseDouble(lblTotal.getText()), Integer.parseInt(tfQuantidade.getText()))){
             JOptionPane.showMessageDialog(null, "Categoria alterada com sucesso!");
             
-//             tfId.setText(String.valueOf(id));
-//            tfData.setText(String.valueOf(String.valueOf(data)));
-//            taDescricao.setText(String.valueOf(descricao));
-//            tfCategoria.setText(categoria);
-//            tfQuantidade.setText(String.valueOf(quantidade));
-//            tfValor.setText(String.valueOf(valor));
-//            lblTotal.setText(String.valueOf(total));
+           
+            tfData.setText(String.valueOf(String.valueOf("")));
+            taDescricao.setText(String.valueOf(""));
+            tfCategoria.setText("");
+            tfQuantidade.setText(String.valueOf(""));
+            tfValor.setText((""));
+            lblTotal.setText((""));
         }else{
             JOptionPane.showMessageDialog(null, "Não foi possível alterar!");
         }
@@ -137,7 +137,7 @@ public class Despesas extends javax.swing.JFrame {
         if (daoDespesas.excluir(Integer.parseInt(tfId.getText()))){
             JOptionPane.showMessageDialog(null, "Despesa " + taDescricao.getText() + " excluída com sucesso!");
             
-            tfId.setText(String.valueOf(""));
+            
             tfData.setText(String.valueOf(String.valueOf("")));
             taDescricao.setText(String.valueOf(""));
             tfCategoria.setText("");

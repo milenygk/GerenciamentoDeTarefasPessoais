@@ -42,12 +42,13 @@ public class ListDespesas extends javax.swing.JFrame {
                         
             defaultTableModel.setRowCount(0);
            while (resultSet.next()){
-                String data = resultSet.getString(1);
-                String descricao = resultSet.getString(2);
-                String categoria = resultSet.getString(3);
-                String quantidade = resultSet.getString(4);
-                String valor = resultSet.getString(5);
-                String total = resultSet.getString(6);
+               String id = resultSet.getString(1);
+                String data = resultSet.getString(2);
+                String descricao = resultSet.getString(3);
+                String categoria = resultSet.getString(4);
+                String quantidade = resultSet.getString(5);
+                String valor = resultSet.getString(6);
+                String total = resultSet.getString(7);
                 
                 defaultTableModel.addRow(new Object[]{data, descricao, categoria, quantidade, valor, total});
             }
@@ -68,12 +69,13 @@ public class ListDespesas extends javax.swing.JFrame {
             
           defaultTableModel.setRowCount(0);
            while (resultSet.next()){
-                String data = resultSet.getString(1);
-                String descricao = resultSet.getString(2);
-                String categoria = resultSet.getString(3);
-                String quantidade = resultSet.getString(4);
-                String valor = resultSet.getString(5);
-                String total = resultSet.getString(6);
+               String id = resultSet.getString(1);
+                String data = resultSet.getString(2);
+                String descricao = resultSet.getString(3);
+                String categoria = resultSet.getString(4);
+                String quantidade = resultSet.getString(5);
+                String valor = resultSet.getString(6);
+                String total = resultSet.getString(7);
                 
                 defaultTableModel.addRow(new Object[]{data, descricao, categoria, quantidade, valor, total});
             }
@@ -94,12 +96,13 @@ public class ListDespesas extends javax.swing.JFrame {
             
             defaultTableModel.setRowCount(0);
            while (resultSet.next()){
-                String data = resultSet.getString(1);
-                String descricao = resultSet.getString(2);
-                String categoria = resultSet.getString(3);
-                String quantidade = resultSet.getString(4);
-                String valor = resultSet.getString(5);
-                String total = resultSet.getString(6);
+               String id = resultSet.getString(1);
+                String data = resultSet.getString(2);
+                String descricao = resultSet.getString(3);
+                String categoria = resultSet.getString(4);
+                String quantidade = resultSet.getString(5);
+                String valor = resultSet.getString(6);
+                String total = resultSet.getString(7);
                 
                 defaultTableModel.addRow(new Object[]{data, descricao, categoria, quantidade, valor, total});
             }
@@ -120,12 +123,13 @@ public class ListDespesas extends javax.swing.JFrame {
             
            defaultTableModel.setRowCount(0);
            while (resultSet.next()){
-                String data = resultSet.getString(1);
-                String descricao = resultSet.getString(2);
-                String categoria = resultSet.getString(3);
-                String quantidade = resultSet.getString(4);
-                String valor = resultSet.getString(5);
-                String total = resultSet.getString(6);
+                String id = resultSet.getString(1);
+                String data = resultSet.getString(2);
+                String descricao = resultSet.getString(3);
+                String categoria = resultSet.getString(4);
+                String quantidade = resultSet.getString(5);
+                String valor = resultSet.getString(6);
+                String total = resultSet.getString(7);
                 
                 defaultTableModel.addRow(new Object[]{data, descricao, categoria, quantidade, valor, total});
             }
@@ -146,12 +150,13 @@ public class ListDespesas extends javax.swing.JFrame {
             
            defaultTableModel.setRowCount(0);
            while (resultSet.next()){
-                String data = resultSet.getString(1);
-                String descricao = resultSet.getString(2);
-                String categoria = resultSet.getString(3);
-                String quantidade = resultSet.getString(4);
-                String valor = resultSet.getString(5);
-                String total = resultSet.getString(6);
+               String id = resultSet.getString(1);
+                String data = resultSet.getString(2);
+                String descricao = resultSet.getString(3);
+                String categoria = resultSet.getString(4);
+                String quantidade = resultSet.getString(5);
+                String valor = resultSet.getString(6);
+                String total = resultSet.getString(7);
                 
                 defaultTableModel.addRow(new Object[]{data, descricao, categoria, quantidade, valor, total});
             }
@@ -172,12 +177,13 @@ public class ListDespesas extends javax.swing.JFrame {
             
             defaultTableModel.setRowCount(0);
            while (resultSet.next()){
-                String data = resultSet.getString(1);
-                String descricao = resultSet.getString(2);
-                String categoria = resultSet.getString(3);
-                String quantidade = resultSet.getString(4);
-                String valor = resultSet.getString(5);
-                String total = resultSet.getString(6);
+                String id = resultSet.getString(1);
+                String data = resultSet.getString(2);
+                String descricao = resultSet.getString(3);
+                String categoria = resultSet.getString(4);
+                String quantidade = resultSet.getString(5);
+                String valor = resultSet.getString(6);
+                String total = resultSet.getString(7);
                 
                 defaultTableModel.addRow(new Object[]{data, descricao, categoria, quantidade, valor, total});
             }
@@ -198,12 +204,13 @@ public class ListDespesas extends javax.swing.JFrame {
             
             defaultTableModel.setRowCount(0);
            while (resultSet.next()){
-                String data = resultSet.getString(1);
-                String descricao = resultSet.getString(2);
-                String categoria = resultSet.getString(3);
-                String quantidade = resultSet.getString(4);
-                String valor = resultSet.getString(5);
-                String total = resultSet.getString(6);
+               String id = resultSet.getString(1);
+                String data = resultSet.getString(2);
+                String descricao = resultSet.getString(3);
+                String categoria = resultSet.getString(4);
+                String quantidade = resultSet.getString(5);
+                String valor = resultSet.getString(6);
+                String total = resultSet.getString(7);
                 
                 defaultTableModel.addRow(new Object[]{data, descricao, categoria, quantidade, valor, total});
             }
@@ -238,11 +245,11 @@ public class ListDespesas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Data", "Descrição", "Categoria", "Quantidade", "Valor", "Total"
+                "Id", "Data", "Descrição", "Categoria", "Quantidade", "Valor", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -385,8 +392,8 @@ public class ListDespesas extends javax.swing.JFrame {
                 modDespesas.setDescricao(String.valueOf(tableDespesas.getValueAt(tableDespesas.getSelectedRow(), 2)));
                 modDespesas.setCategoria(String.valueOf(tableDespesas.getValueAt(tableDespesas.getSelectedRow(), 3)));
                 modDespesas.setValor(Double.parseDouble(String.valueOf(tableDespesas.getValueAt(tableDespesas.getSelectedRow(), 4))));
-                modDespesas.setTotal(Double.parseDouble(String.valueOf(tableDespesas.getValueAt(tableDespesas.getSelectedRow(), 5))));
-                modDespesas.setQuantidade(Integer.parseInt(String.valueOf(tableDespesas.getValueAt(tableDespesas.getSelectedRow(), 6))));
+                modDespesas.setTotal(Double.parseDouble(String.valueOf(tableDespesas.getValueAt(tableDespesas.getSelectedRow(), 6))));
+                modDespesas.setQuantidade(Integer.parseInt(String.valueOf(tableDespesas.getValueAt(tableDespesas.getSelectedRow(), 5))));
                 
                 DadosTemporarios.tempObject = (ModDespesas) modDespesas;
                 

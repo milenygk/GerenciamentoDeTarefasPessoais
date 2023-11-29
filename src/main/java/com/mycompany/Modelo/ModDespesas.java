@@ -21,7 +21,7 @@ public class ModDespesas {
 
     @Override
     public String toString() {
-        return "ModDespesas{" + "id=" + id + ", data=" + data + ", descricao=" + descricao + ", categoria=" + categoria + ", valor=" + valor + ", quantidade=" + quantidade + ", total=" + total + '}';
+        return "ModDespesas{" + ", id=" + id + ", data=" + data + ", descricao=" + descricao + ", categoria=" + categoria + ", valor=" + valor + ", quantidade=" + quantidade + ", total=" + total + '}';
     }
 
     public int getId() {

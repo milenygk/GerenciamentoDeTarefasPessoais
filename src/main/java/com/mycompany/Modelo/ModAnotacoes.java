@@ -12,16 +12,14 @@ import java.sql.Date;
  */
 public class ModAnotacoes {
     private int id;
-    private int idCategoria;
-    private Date data;
+    private String data;
     private String anotacoes;
 
     public ModAnotacoes() {
     }
 
-    public ModAnotacoes(int id, int idCategoria, Date data, String anotacoes) {
+    public ModAnotacoes(int id, String data, String anotacoes) {
         this.id = id;
-        this.idCategoria = idCategoria;
         this.data = data;
         this.anotacoes = anotacoes;
     }
@@ -34,11 +32,11 @@ public class ModAnotacoes {
         this.anotacoes = anotacoes;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 
@@ -50,16 +48,8 @@ public class ModAnotacoes {
         this.id = id;
     }
 
-    public int getIdCategoria() {
-        return idCategoria;
-    }
-
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
-    }
-    
-     @Override
+    @Override
     public String toString() {
-        return "ModObrigacoes{"+ "id=" + id + ", idCategoria=" + idCategoria + ", data=" + data + ", anotacoes=" + anotacoes + '}';
+        return "ModAnotacoes{" + "id=" + id + ", data=" + data + ", anotacoes=" + anotacoes + '}';
     }
 }
