@@ -23,7 +23,7 @@ public class ListPlanejamentoDiario extends javax.swing.JFrame {
         initComponents();
         
         setLocationRelativeTo(null);
-        
+//        setExtendedState(MAXIMIZED_BOTH);
         listarTodos();
     }
 
@@ -39,13 +39,14 @@ public class ListPlanejamentoDiario extends javax.swing.JFrame {
                         
             defaultTableModel.setRowCount(0);
            while (resultSet.next()){
-                String data = resultSet.getString(1);
-                String rotinaManha = resultSet.getString(2);
-                String rotinaTarde = resultSet.getString(3);
-                String rotinaNoite = resultSet.getString(4);
-                String tarfasPontuais = resultSet.getString(5);
+                String id = resultSet.getString(1);
+                String data = resultSet.getString(2);
+                String rotinaManha = resultSet.getString(3);
+                String rotinaTarde = resultSet.getString(4);
+                String rotinaNoite = resultSet.getString(5);
+                String tarfasPontuais = resultSet.getString(6);
                 
-                defaultTableModel.addRow(new Object[]{data, rotinaManha, rotinaTarde, rotinaNoite, tarfasPontuais});
+                defaultTableModel.addRow(new Object[]{id, data, rotinaManha, rotinaTarde, rotinaNoite, tarfasPontuais});
             }
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -64,13 +65,14 @@ public class ListPlanejamentoDiario extends javax.swing.JFrame {
             
           defaultTableModel.setRowCount(0);
            while (resultSet.next()){
-                String data = resultSet.getString(1);
-                String rotinaManha = resultSet.getString(2);
-                String rotinaTarde = resultSet.getString(3);
-                String rotinaNoite = resultSet.getString(4);
-                String tarfasPontuais = resultSet.getString(5);
+                String id = resultSet.getString(1);
+                String data = resultSet.getString(2);
+                String rotinaManha = resultSet.getString(3);
+                String rotinaTarde = resultSet.getString(4);
+                String rotinaNoite = resultSet.getString(5);
+                String tarfasPontuais = resultSet.getString(6);
                 
-                defaultTableModel.addRow(new Object[]{data, rotinaManha, rotinaTarde, rotinaNoite, tarfasPontuais});
+                defaultTableModel.addRow(new Object[]{id, data, rotinaManha, rotinaTarde, rotinaNoite, tarfasPontuais});
             }
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -89,13 +91,14 @@ public class ListPlanejamentoDiario extends javax.swing.JFrame {
             
             defaultTableModel.setRowCount(0);
            while (resultSet.next()){
-               String data = resultSet.getString(1);
-                String rotinaManha = resultSet.getString(2);
-                String rotinaTarde = resultSet.getString(3);
-                String rotinaNoite = resultSet.getString(4);
-                String tarfasPontuais = resultSet.getString(5);
+                String id = resultSet.getString(1);
+                String data = resultSet.getString(2);
+                String rotinaManha = resultSet.getString(3);
+                String rotinaTarde = resultSet.getString(4);
+                String rotinaNoite = resultSet.getString(5);
+                String tarfasPontuais = resultSet.getString(6);
                 
-                defaultTableModel.addRow(new Object[]{data, rotinaManha, rotinaTarde, rotinaNoite, tarfasPontuais});
+                defaultTableModel.addRow(new Object[]{id, data, rotinaManha, rotinaTarde, rotinaNoite, tarfasPontuais});
             }
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -114,13 +117,14 @@ public class ListPlanejamentoDiario extends javax.swing.JFrame {
             
            defaultTableModel.setRowCount(0);
            while (resultSet.next()){
-                 String data = resultSet.getString(1);
-                String rotinaManha = resultSet.getString(2);
-                String rotinaTarde = resultSet.getString(3);
-                String rotinaNoite = resultSet.getString(4);
-                String tarfasPontuais = resultSet.getString(5);
+                String id = resultSet.getString(1);
+                String data = resultSet.getString(2);
+                String rotinaManha = resultSet.getString(3);
+                String rotinaTarde = resultSet.getString(4);
+                String rotinaNoite = resultSet.getString(5);
+                String tarfasPontuais = resultSet.getString(6);
                 
-                defaultTableModel.addRow(new Object[]{data, rotinaManha, rotinaTarde, rotinaNoite, tarfasPontuais});
+                defaultTableModel.addRow(new Object[]{id, data, rotinaManha, rotinaTarde, rotinaNoite, tarfasPontuais});
             }
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -139,13 +143,14 @@ public class ListPlanejamentoDiario extends javax.swing.JFrame {
             
            defaultTableModel.setRowCount(0);
            while (resultSet.next()){
-                 String data = resultSet.getString(1);
-                String rotinaManha = resultSet.getString(2);
-                String rotinaTarde = resultSet.getString(3);
-                String rotinaNoite = resultSet.getString(4);
-                String tarfasPontuais = resultSet.getString(5);
+                String id = resultSet.getString(1);
+                String data = resultSet.getString(2);
+                String rotinaManha = resultSet.getString(3);
+                String rotinaTarde = resultSet.getString(4);
+                String rotinaNoite = resultSet.getString(5);
+                String tarfasPontuais = resultSet.getString(6);
                 
-                defaultTableModel.addRow(new Object[]{data, rotinaManha, rotinaTarde, rotinaNoite, tarfasPontuais});
+                defaultTableModel.addRow(new Object[]{id, data, rotinaManha, rotinaTarde, rotinaNoite, tarfasPontuais});
             }
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -165,13 +170,14 @@ public class ListPlanejamentoDiario extends javax.swing.JFrame {
             
            defaultTableModel.setRowCount(0);
            while (resultSet.next()){
-                 String data = resultSet.getString(1);
-                String rotinaManha = resultSet.getString(2);
-                String rotinaTarde = resultSet.getString(3);
-                String rotinaNoite = resultSet.getString(4);
-                String tarfasPontuais = resultSet.getString(5);
+                String id = resultSet.getString(1);
+                String data = resultSet.getString(2);
+                String rotinaManha = resultSet.getString(3);
+                String rotinaTarde = resultSet.getString(4);
+                String rotinaNoite = resultSet.getString(5);
+                String tarfasPontuais = resultSet.getString(6);
                 
-                defaultTableModel.addRow(new Object[]{data, rotinaManha, rotinaTarde, rotinaNoite, tarfasPontuais});
+                defaultTableModel.addRow(new Object[]{id, data, rotinaManha, rotinaTarde, rotinaNoite, tarfasPontuais});
             }
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -204,11 +210,11 @@ public class ListPlanejamentoDiario extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Data", "Rotina Manha", "Rotina Tarde", "Rotina Noite", "Principal(is) Atividade(s) do Dia"
+                "Id", "Data", "Rotina Manha", "Rotina Tarde", "Rotina Noite", "Principal(is) Atividade(s) do Dia"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -251,16 +257,14 @@ public class ListPlanejamentoDiario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnBuscar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnCadastrarPlanejamento))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jcbTipoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tfFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jcbTipoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tfFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 12, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnBuscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCadastrarPlanejamento)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -273,11 +277,11 @@ public class ListPlanejamentoDiario extends javax.swing.JFrame {
                     .addComponent(tfFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jcbTipoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuscar)
-                    .addComponent(btnCadastrarPlanejamento))
+                    .addComponent(btnCadastrarPlanejamento)
+                    .addComponent(btnBuscar))
                 .addContainerGap())
         );
 
@@ -285,15 +289,11 @@ public class ListPlanejamentoDiario extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
