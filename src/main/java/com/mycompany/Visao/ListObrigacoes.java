@@ -4,7 +4,12 @@
  */
 package com.mycompany.Visao;
 
+import com.mycompany.Dao.DaoObrigacoes;
+import com.mycompany.Ferramentas.DadosTemporarios;
 import com.mycompany.Ferramentas.Formularios;
+import com.mycompany.Modelo.ModObrigacoes;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,7 +22,105 @@ public class ListObrigacoes extends javax.swing.JFrame {
      */
     public ListObrigacoes() {
         initComponents();
+        
+        setLocationRelativeTo(null);
+       
+        listarTodos();
     }
+
+    public void listarTodos(){
+        try{
+            DefaultTableModel defaultTableModel = (DefaultTableModel) tableObrigacoes.getModel();
+           
+            tableObrigacoes.setModel(defaultTableModel);
+
+            DaoObrigacoes daoObrigacoes = new DaoObrigacoes();
+
+            ResultSet resultSet = daoObrigacoes.listarTodos();
+           
+            defaultTableModel.setRowCount(0);
+            while (resultSet.next()){
+                String id = resultSet.getString(1);
+                String data = resultSet.getString(2);
+                String Obrigacao = resultSet.getString(3);
+               
+                defaultTableModel.addRow(new Object[]{id, data, Obrigacao});
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+   
+    public void listarPorId(int pId){
+        try{
+            DefaultTableModel defaultTableModel = (DefaultTableModel) tableObrigacoes.getModel();
+           
+            tableObrigacoes.setModel(defaultTableModel);
+
+            DaoObrigacoes daoObrigacoes = new DaoObrigacoes();
+
+            ResultSet resultSet = daoObrigacoes.listarPorId(pId);
+           
+            defaultTableModel.setRowCount(0);
+            while (resultSet.next()){
+                String id = resultSet.getString(1);
+                String data = resultSet.getString(2);
+                String Obrigacao = resultSet.getString(3);
+               
+                defaultTableModel.addRow(new Object[]{id, data, Obrigacao});
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+   
+    public void listarPorData(){
+        try{
+            DefaultTableModel defaultTableModel = (DefaultTableModel) tableObrigacoes.getModel();
+           
+            tableObrigacoes.setModel(defaultTableModel);
+
+            DaoObrigacoes daoObrigacoes = new DaoObrigacoes();
+
+
+            ResultSet resultSet = daoObrigacoes.listarPorData(tfFiltro.getText());
+           
+            defaultTableModel.setRowCount(0);
+            while (resultSet.next()){
+                 String id = resultSet.getString(1);
+                String data = resultSet.getString(2);
+                String Obrigacao = resultSet.getString(3);
+               
+                defaultTableModel.addRow(new Object[]{id, data, Obrigacao});
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+   
+    public void listarPorObrigacao(){
+        try{
+             DefaultTableModel defaultTableModel = (DefaultTableModel) tableObrigacoes.getModel();
+           
+            tableObrigacoes.setModel(defaultTableModel);
+
+            DaoObrigacoes daoObrigacoes = new DaoObrigacoes();
+
+            ResultSet resultSet = daoObrigacoes.listarPorObrigacao(tfFiltro.getText());
+           
+            defaultTableModel.setRowCount(0);
+            while (resultSet.next()){
+                String id = resultSet.getString(1);
+                String data = resultSet.getString(2);
+                String Obrigacao = resultSet.getString(3);
+               
+                defaultTableModel.addRow(new Object[]{id, data, Obrigacao});
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,7 +152,7 @@ public class ListObrigacoes extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Categoria", "Data de realização", "Obrigação"
+                "Id", "Data de realização", "Obrigação"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -60,12 +163,22 @@ public class ListObrigacoes extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tableObrigacoes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableObrigacoesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableObrigacoes);
 
         jcbTipoFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Categoria", "Data de Realização", "Obrigação" }));
 
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnBuscar.setText("BUSCAR");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         btnAdicionar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnAdicionar.setText("ADICIONAR OBRIGAÇÃO");
@@ -141,6 +254,38 @@ public class ListObrigacoes extends javax.swing.JFrame {
 
         Formularios.Obrigacoes.setVisible(true);
     }//GEN-LAST:event_btnAdicionarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+         switch (jcbTipoFiltro.getSelectedIndex()){
+            case 0:
+                listarTodos();
+                break;
+            case 1:
+                listarPorId(Integer.parseInt(tfFiltro.getText()));
+                break;
+            case 2:
+                listarPorData();
+                break;
+            case 3:
+                listarPorObrigacao();
+                break;
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void tableObrigacoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableObrigacoesMouseClicked
+        if (evt.getClickCount() == 2){
+             ModObrigacoes modObrigacoes = new ModObrigacoes();
+
+            modObrigacoes.setId(Integer.parseInt(String.valueOf(tableObrigacoes.getValueAt(tableObrigacoes.getSelectedRow(), 0))));
+            modObrigacoes.setData(String.valueOf(tableObrigacoes.getValueAt(tableObrigacoes.getSelectedRow(), 1)));
+            modObrigacoes.setObrigacoes(String.valueOf(tableObrigacoes.getValueAt(tableObrigacoes.getSelectedRow(), 2)));
+
+             DadosTemporarios.tempObject = (ModObrigacoes) modObrigacoes;
+
+            Obrigacoes obrigacoes = new Obrigacoes();
+            obrigacoes.setVisible(true);
+        }
+    }//GEN-LAST:event_tableObrigacoesMouseClicked
 
     /**
      * @param args the command line arguments

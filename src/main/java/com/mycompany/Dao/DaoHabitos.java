@@ -18,14 +18,14 @@ import java.sql.ResultSet;
 public class DaoHabitos {
      String sql;
     
-    public Boolean inserir(int id, int idCategoria, String novoHabito){
+    public Boolean inserir(int id, String novoHabito){
          try{
             sql = "INSERT INTO HABITOS (ID, ID_CATEGORIA, NOVO_HABITO (?, ?, ?)";
             
           setStatement(getConexao().prepareStatement(sql));
             
            getStatement().setInt(1, id);
-           getStatement().setInt(2, idCategoria);
+//           getStatement().setInt(2, idCategoria);
            getStatement().setString(3, novoHabito);             
              
             getStatement().executeUpdate();
@@ -37,7 +37,7 @@ public class DaoHabitos {
         }
     }
     
-     public Boolean alterar (int id, int idCategoria, String novoHabito){
+     public Boolean alterar (int id, String novoHabito){
          try{
                sql = "UPDATE HABITOS SET NOVO_HABITO = ? WHERE ID = ?";
             
@@ -112,7 +112,7 @@ public class DaoHabitos {
         return getResultado();
     }
     
-     public ResultSet listarPorImportante(String importante){
+     public ResultSet listarPorHabito(String pHabito){
         try{
             sql =   " SELECT                                                     " +
                     "HAB.ID AS ID,                                               " +
@@ -124,7 +124,7 @@ public class DaoHabitos {
                     
             setStatement(getConexao().prepareStatement(sql));
             
-            getStatement().setString(1, importante + "%");
+            getStatement().setString(1, pHabito + "%");
             
             setResultado(getStatement().executeQuery());
         }catch(Exception e){

@@ -4,7 +4,14 @@
  */
 package com.mycompany.Visao;
 
+import com.mycompany.Dao.DaoHabitos;
+import com.mycompany.Dao.DaoTrabalho;
+import com.mycompany.Ferramentas.DadosTemporarios;
 import com.mycompany.Ferramentas.Formularios;
+import com.mycompany.Modelo.ModHabitos;
+import com.mycompany.Modelo.ModTrabalho;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,8 +24,193 @@ public class ListTrabalho extends javax.swing.JFrame {
      */
     public ListTrabalho() {
         initComponents();
+        
+         setLocationRelativeTo(null);
+       
+        listarTodos();
     }
 
+    public void listarTodos(){
+        try{
+            DefaultTableModel defaultTableModel = (DefaultTableModel) tableTrabalho.getModel();
+           
+            tableTrabalho.setModel(defaultTableModel);
+
+          DaoTrabalho daoTrabalho = new DaoTrabalho();
+
+            ResultSet resultSet = daoTrabalho.listarTodos();
+           
+            defaultTableModel.setRowCount(0);
+            while (resultSet.next()){
+                String id = resultSet.getString(1);
+                String data = resultSet.getString(2);
+                String importante = resultSet.getString(3);
+                String urgente = resultSet.getString(4);
+                String importanteUrgente = resultSet.getString(5);
+                String naoImportanteNemUgente = resultSet.getString(6);
+               
+                defaultTableModel.addRow(new Object[]{id, data, importante, urgente,importanteUrgente, naoImportanteNemUgente});
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+   
+    public void listarPorId(int pId){
+        try{
+           DefaultTableModel defaultTableModel = (DefaultTableModel) tableTrabalho.getModel();
+           
+            tableTrabalho.setModel(defaultTableModel);
+
+          DaoTrabalho daoTrabalho = new DaoTrabalho();
+
+            ResultSet resultSet = daoTrabalho.listarPorId(pId);
+           
+            defaultTableModel.setRowCount(0);
+            while (resultSet.next()){
+                String id = resultSet.getString(1);
+               String data = resultSet.getString(2);
+                String importante = resultSet.getString(3);
+                String urgente = resultSet.getString(4);
+                String importanteUrgente = resultSet.getString(5);
+                String naoImportanteNemUgente = resultSet.getString(6);
+               
+                defaultTableModel.addRow(new Object[]{id, data, importante, urgente,importanteUrgente, naoImportanteNemUgente});
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+   
+    public void listarPorData(){
+        try{
+             DefaultTableModel defaultTableModel = (DefaultTableModel) tableTrabalho.getModel();
+           
+            tableTrabalho.setModel(defaultTableModel);
+
+          DaoTrabalho daoTrabalho = new DaoTrabalho();
+
+            ResultSet resultSet = daoTrabalho.listarPorData(tfFiltro.getText());
+           
+            defaultTableModel.setRowCount(0);
+            while (resultSet.next()){
+               String id = resultSet.getString(1);
+               String data = resultSet.getString(2);
+                String importante = resultSet.getString(3);
+                String urgente = resultSet.getString(4);
+                String importanteUrgente = resultSet.getString(5);
+                String naoImportanteNemUgente = resultSet.getString(6);
+               
+                defaultTableModel.addRow(new Object[]{id, data, importante, urgente,importanteUrgente, naoImportanteNemUgente});
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+  
+  public void listarPorImportante(){
+        try{
+             DefaultTableModel defaultTableModel = (DefaultTableModel) tableTrabalho.getModel();
+           
+            tableTrabalho.setModel(defaultTableModel);
+
+          DaoTrabalho daoTrabalho = new DaoTrabalho();
+
+            ResultSet resultSet = daoTrabalho.listarPorImportante(tfFiltro.getText());
+           
+            defaultTableModel.setRowCount(0);
+            while (resultSet.next()){
+               String id = resultSet.getString(1);
+               String data = resultSet.getString(2);
+                String importante = resultSet.getString(3);
+                String urgente = resultSet.getString(4);
+                String importanteUrgente = resultSet.getString(5);
+                String naoImportanteNemUgente = resultSet.getString(6);
+               
+                defaultTableModel.addRow(new Object[]{id, data, importante, urgente,importanteUrgente, naoImportanteNemUgente});
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+  
+    public void listarPorUgente(){
+        try{
+             DefaultTableModel defaultTableModel = (DefaultTableModel) tableTrabalho.getModel();
+           
+            tableTrabalho.setModel(defaultTableModel);
+
+          DaoTrabalho daoTrabalho = new DaoTrabalho();
+
+            ResultSet resultSet = daoTrabalho.listarPorUgente(tfFiltro.getText());
+           
+            defaultTableModel.setRowCount(0);
+            while (resultSet.next()){
+               String id = resultSet.getString(1);
+               String data = resultSet.getString(2);
+                String importante = resultSet.getString(3);
+                String urgente = resultSet.getString(4);
+                String importanteUrgente = resultSet.getString(5);
+                String naoImportanteNemUgente = resultSet.getString(6);
+               
+                defaultTableModel.addRow(new Object[]{id, data, importante, urgente,importanteUrgente, naoImportanteNemUgente});
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+      public void listarPorImportanteUrgente(){
+        try{
+             DefaultTableModel defaultTableModel = (DefaultTableModel) tableTrabalho.getModel();
+           
+            tableTrabalho.setModel(defaultTableModel);
+
+          DaoTrabalho daoTrabalho = new DaoTrabalho();
+
+            ResultSet resultSet = daoTrabalho.listarPorImportanteUrgente(tfFiltro.getText());
+           
+            defaultTableModel.setRowCount(0);
+            while (resultSet.next()){
+               String id = resultSet.getString(1);
+               String data = resultSet.getString(2);
+                String importante = resultSet.getString(3);
+                String urgente = resultSet.getString(4);
+                String importanteUrgente = resultSet.getString(5);
+                String naoImportanteNemUgente = resultSet.getString(6);
+               
+                defaultTableModel.addRow(new Object[]{id, data, importante, urgente,importanteUrgente, naoImportanteNemUgente});
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+      
+        public void listarPorNaoImportanteNemUrgente(){
+        try{
+             DefaultTableModel defaultTableModel = (DefaultTableModel) tableTrabalho.getModel();
+           
+            tableTrabalho.setModel(defaultTableModel);
+
+          DaoTrabalho daoTrabalho = new DaoTrabalho();
+
+            ResultSet resultSet = daoTrabalho.listarPorNaoImportanteNemUrgente(tfFiltro.getText());
+           
+            defaultTableModel.setRowCount(0);
+            while (resultSet.next()){
+               String id = resultSet.getString(1);
+               String data = resultSet.getString(2);
+                String importante = resultSet.getString(3);
+                String urgente = resultSet.getString(4);
+                String importanteUrgente = resultSet.getString(5);
+                String naoImportanteNemUgente = resultSet.getString(6);
+               
+                defaultTableModel.addRow(new Object[]{id, data, importante, urgente,importanteUrgente, naoImportanteNemUgente});
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,21 +241,31 @@ public class ListTrabalho extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Data", "Importante", "Importante e urgente", "Urgente", "Nã importante nem urgente"
+                "Id", "Data", "Importante", "Importante e urgente", "Urgente", "Nã importante nem urgente"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tableTrabalho.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableTrabalhoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableTrabalho);
 
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnBuscar.setText("BUSCAR");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         btnAdicionar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnAdicionar.setText("PLANEJAMENTO DO DIA");
@@ -141,6 +343,51 @@ public class ListTrabalho extends javax.swing.JFrame {
 
         Formularios.trabalho.setVisible(true);
     }//GEN-LAST:event_btnAdicionarActionPerformed
+
+    private void tableTrabalhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableTrabalhoMouseClicked
+        if (evt.getClickCount() == 2){
+              ModTrabalho modTrabalho = new ModTrabalho();
+
+            modTrabalho.setId(Integer.parseInt(String.valueOf(tableTrabalho.getValueAt(tableTrabalho.getSelectedRow(), 0))));
+            modTrabalho.setData(String.valueOf(tableTrabalho.getValueAt(tableTrabalho.getSelectedRow(), 1)));
+            modTrabalho.setImportante(String.valueOf(tableTrabalho.getValueAt(tableTrabalho.getSelectedRow(), 2)));
+            modTrabalho.setImportanteUrgente(String.valueOf(tableTrabalho.getValueAt(tableTrabalho.getSelectedRow(), 3)));
+            modTrabalho.setUrgente(String.valueOf(tableTrabalho.getValueAt(tableTrabalho.getSelectedRow(), 4)));
+            modTrabalho.setNaoImportanteNemUrgente(String.valueOf(tableTrabalho.getValueAt(tableTrabalho.getSelectedRow(), 5)));
+
+              DadosTemporarios.tempObject = (ModTrabalho) modTrabalho;
+
+            Trabalho trabalho = new Trabalho();
+            trabalho.setVisible(true);
+        }
+    }//GEN-LAST:event_tableTrabalhoMouseClicked
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        switch (jcbTipoFiltro.getSelectedIndex()){
+            case 0:
+                listarTodos();
+                break;
+            case 1:
+                listarPorId(Integer.parseInt(tfFiltro.getText()));
+                break;
+            case 2:
+                listarPorData();
+                break;
+            case 3:
+                listarPorImportante();
+                break;
+            case 4:
+                listarPorUgente();
+                break;
+            case 5:
+                listarPorImportanteUrgente();
+                break;
+            case 6:
+                listarPorNaoImportanteNemUrgente();
+                break;    
+                
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments

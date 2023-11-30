@@ -4,7 +4,12 @@
  */
 package com.mycompany.Visao;
 
+import com.mycompany.Dao.DaoHabitos;
+import com.mycompany.Ferramentas.DadosTemporarios;
 import com.mycompany.Ferramentas.Formularios;
+import com.mycompany.Modelo.ModHabitos;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,6 +22,75 @@ public class ListHabitos extends javax.swing.JFrame {
      */
     public ListHabitos() {
         initComponents();
+        
+         setLocationRelativeTo(null);
+       
+        listarTodos();
+    }
+
+    public void listarTodos(){
+        try{
+            DefaultTableModel defaultTableModel = (DefaultTableModel) tableHabitos.getModel();
+           
+            tableHabitos.setModel(defaultTableModel);
+
+            DaoHabitos daoHabitos = new DaoHabitos();
+
+            ResultSet resultSet = daoHabitos.listarTodos();
+           
+            defaultTableModel.setRowCount(0);
+            while (resultSet.next()){
+                String id = resultSet.getString(1);
+                String habito = resultSet.getString(2);
+               
+                defaultTableModel.addRow(new Object[]{id, habito});
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+   
+    public void listarPorId(int pId){
+        try{
+            DefaultTableModel defaultTableModel = (DefaultTableModel) tableHabitos.getModel();
+
+            tableHabitos.setModel(defaultTableModel);
+
+            DaoHabitos daoHabitos = new DaoHabitos();
+
+            ResultSet resultSet = daoHabitos.listarPorId(pId);
+           
+            defaultTableModel.setRowCount(0);
+            while (resultSet.next()){
+                String id = resultSet.getString(1);
+                String habito = resultSet.getString(2);
+               
+                defaultTableModel.addRow(new Object[]{id, habito});
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+   
+    public void listarPorHabito(){
+        try{
+            DefaultTableModel defaultTableModel = (DefaultTableModel) tableHabitos.getModel();
+           
+             tableHabitos.setModel(defaultTableModel);
+
+            DaoHabitos daoHabitos = new DaoHabitos();
+            ResultSet resultSet = daoHabitos.listarPorHabito(tfFiltro.getText());
+           
+            defaultTableModel.setRowCount(0);
+            while (resultSet.next()){
+               String id = resultSet.getString(1);
+                String habito = resultSet.getString(2);
+               
+                defaultTableModel.addRow(new Object[]{id, habito});
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
@@ -31,11 +105,11 @@ public class ListHabitos extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        tableHabitos = new javax.swing.JTable();
+        jcbTipoFilto = new javax.swing.JComboBox<>();
+        tfFiltro = new javax.swing.JTextField();
+        btnAdicionar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -44,31 +118,46 @@ public class ListHabitos extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel1.setText("LISTA DE HÁBITOS");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableHabitos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id", "Hábitos"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tableHabitos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableHabitosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tableHabitos);
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setText("ADICIONAR HÁBITO");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jcbTipoFilto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos" }));
+
+        btnAdicionar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAdicionar.setText("ADICIONAR HÁBITO");
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAdicionarActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setText("BUSCAR");
+        btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBuscar.setText("BUSCAR");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -78,16 +167,16 @@ public class ListHabitos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jcbTipoFilto, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1))
+                        .addComponent(tfFiltro))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jButton2)
+                                .addComponent(btnBuscar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1))
+                                .addComponent(btnAdicionar))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(171, 171, 171)
@@ -105,14 +194,14 @@ public class ListHabitos extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbTipoFilto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnAdicionar)
+                    .addComponent(btnBuscar))
                 .addContainerGap())
         );
 
@@ -136,12 +225,40 @@ public class ListHabitos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         if (Formularios.Habitos == null)
             Formularios.Habitos = new Habitos();
 
         Formularios.Habitos.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAdicionarActionPerformed
+
+    private void tableHabitosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableHabitosMouseClicked
+          if (evt.getClickCount() == 2){
+              ModHabitos modHabitos = new ModHabitos();
+
+            modHabitos.setId(Integer.parseInt(String.valueOf(tableHabitos.getValueAt(tableHabitos.getSelectedRow(), 0))));
+            modHabitos.setNovoHabito(String.valueOf(tableHabitos.getValueAt(tableHabitos.getSelectedRow(), 1)));
+
+              DadosTemporarios.tempObject = (ModHabitos) modHabitos;
+
+            Habitos habitos = new Habitos();
+            habitos.setVisible(true);
+        }
+    }//GEN-LAST:event_tableHabitosMouseClicked
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+          switch (jcbTipoFilto.getSelectedIndex()){
+            case 0:
+                listarTodos();
+                break;
+            case 1:
+                listarPorId(Integer.parseInt(tfFiltro.getText()));
+                break;
+            case 2:
+                listarPorHabito();
+                break;
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,13 +296,13 @@ public class ListHabitos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton btnAdicionar;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox<String> jcbTipoFilto;
+    private javax.swing.JTable tableHabitos;
+    private javax.swing.JTextField tfFiltro;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,15 +10,13 @@ package com.mycompany.Modelo;
  */
 public class ModHabitos {
     private int id;
-    private int idCategoria;
     private String novoHabito;
 
     public ModHabitos() {
     }
 
-    public ModHabitos(int id, int idCategoria, String novoHabito) {
+    public ModHabitos(int id, String novoHabito) {
         this.id = id;
-        this.idCategoria = idCategoria;
         this.novoHabito = novoHabito;
     }
 
@@ -30,14 +28,6 @@ public class ModHabitos {
         this.id = id;
     }
 
-    public int getIdCategoria() {
-        return idCategoria;
-    }
-
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
-    }
-
     public String getNovoHabito() {
         return novoHabito;
     }
@@ -45,9 +35,9 @@ public class ModHabitos {
     public void setNovoHabito(String novoHabito) {
         this.novoHabito = novoHabito;
     }
-     
-      @Override
+
+    @Override
     public String toString() {
-        return "ModHabitos{"+ "id=" + id + ", idCategoria=" + idCategoria + ", novoHabito=" + novoHabito + '}';
+        return "ModHabitos{" + "id=" + id + ", novoHabito=" + novoHabito + '}';
     }
 }

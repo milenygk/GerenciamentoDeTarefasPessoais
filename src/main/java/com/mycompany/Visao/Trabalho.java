@@ -4,6 +4,15 @@
  */
 package com.mycompany.Visao;
 
+import com.mycompany.Dao.DaoHabitos;
+import com.mycompany.Dao.DaoTrabalho;
+import com.mycompany.Ferramentas.Constantes;
+import com.mycompany.Ferramentas.DadosTemporarios;
+import com.mycompany.Ferramentas.Formularios;
+import com.mycompany.Modelo.ModHabitos;
+import com.mycompany.Modelo.ModTrabalho;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mileny.1948
@@ -15,6 +24,108 @@ public class Trabalho extends javax.swing.JFrame {
      */
     public Trabalho() {
         initComponents();
+        
+          if(!existeDadosTemporarios()){
+              DaoTrabalho daoTrabalho = new DaoTrabalho();
+
+            int id = daoTrabalho.buscarProximoId();
+            if (id >= 0)
+                tfId.setText(String.valueOf(id));
+           
+            btnAcao.setText(Constantes.BTN_SALVAR_TEXT);
+            btnExcluir.setVisible(false);
+        }else{
+            btnAcao.setText(Constantes.BTN_ALTERAR_TEXT);
+            btnExcluir.setVisible(true);
+        }
+       
+        setLocationRelativeTo(null);
+       
+        tfId.setEnabled(false);
+    }
+
+    private Boolean existeDadosTemporarios(){        
+        if(DadosTemporarios.tempObject instanceof ModTrabalho){
+            int id = ((ModTrabalho) DadosTemporarios.tempObject).getId();
+            String data = ((ModTrabalho) DadosTemporarios.tempObject).getData();
+            String importante = ((ModTrabalho) DadosTemporarios.tempObject).getImportante();
+            String urgente = ((ModTrabalho) DadosTemporarios.tempObject).getUrgente();
+            String importanteUrgente = ((ModTrabalho) DadosTemporarios.tempObject).getImportanteUrgente();
+            String naoImportanteNemUrgente = ((ModTrabalho) DadosTemporarios.tempObject).getNaoImportanteNemUrgente();
+           
+            tfId.setText(String.valueOf(id));
+            tfData.setText(data);
+            taImportante.setText(importante);
+            taUrgente.setText(urgente);
+            taImportanteUrgente.setText(importanteUrgente);
+            taNaoImportante.setText(naoImportanteNemUrgente);
+           
+            DadosTemporarios.tempObject = null;
+           
+            return true;
+        }else
+            return false;
+    }
+   
+    private void inserir(){
+              DaoTrabalho daoTrabalho = new DaoTrabalho();
+       
+          if(daoTrabalho.inserir(Integer.parseInt(tfId.getText()), tfData.getText(), taImportante.getText(), taUrgente.getText(), taImportanteUrgente.getText(), taNaoImportante.getText())){
+            JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
+           
+            tfId.setText(String.valueOf(daoTrabalho.buscarProximoId()));
+            tfData.setText("");
+            taImportante.setText("");
+            taUrgente.setText("");
+            taImportanteUrgente.setText("");
+            taNaoImportante.setText("");
+        }else{
+            JOptionPane.showMessageDialog(null, "Não foi possível salvar!");
+        }
+    }
+   
+    private void alterar(){
+              DaoTrabalho daoTrabalho = new DaoTrabalho();
+       
+          if(daoTrabalho.alterar(Integer.parseInt(tfId.getText()), tfData.getText(), taImportante.getText(), taUrgente.getText(), taImportanteUrgente.getText(), taNaoImportante.getText())){
+            JOptionPane.showMessageDialog(null, "Marca alterada com sucesso!");
+           
+            tfId.setText(String.valueOf(daoTrabalho.buscarProximoId()));
+            tfData.setText("");
+            taImportante.setText("");
+            taUrgente.setText("");
+            taImportanteUrgente.setText("");
+            taNaoImportante.setText("");
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Não foi possível alterar!");
+        }
+       
+        ((ListTrabalho) Formularios.ListTrabalho).listarTodos();
+       
+        dispose();
+    }
+   
+    private void excluir(){
+              DaoTrabalho daoTrabalho = new DaoTrabalho();
+       
+        if (daoTrabalho.excluir(Integer.parseInt(tfId.getText()))){
+            JOptionPane.showMessageDialog(null, "Excluido com sucesso!");
+           
+           tfId.setText(String.valueOf(daoTrabalho.buscarProximoId()));
+            tfData.setText("");
+            taImportante.setText("");
+            taUrgente.setText("");
+            taImportanteUrgente.setText("");
+            taNaoImportante.setText("");
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Não foi possível excluir!");
+        }
+       
+        ((ListTrabalho) Formularios.ListTrabalho).listarTodos();
+       
+        dispose();
     }
 
     /**
@@ -28,24 +139,23 @@ public class Trabalho extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        tfData = new javax.swing.JTextField();
+        btnAcao = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        taImportante = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        taUrgente = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        taImportanteUrgente = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea4 = new javax.swing.JTextArea();
+        taNaoImportante = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         tfId = new javax.swing.JTextField();
-        tfIdCategoria = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -54,11 +164,21 @@ public class Trabalho extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("DATA:");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setText("SALVAR");
+        btnAcao.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAcao.setText("SALVAR");
+        btnAcao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcaoActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setText("EXCLUIR");
+        btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnExcluir.setText("EXCLUIR");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("IMPORTANTE:");
@@ -72,28 +192,26 @@ public class Trabalho extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("NÃO IMPORTANTE NEM URGENTE:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        taImportante.setColumns(20);
+        taImportante.setRows(5);
+        jScrollPane1.setViewportView(taImportante);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        taUrgente.setColumns(20);
+        taUrgente.setRows(5);
+        jScrollPane2.setViewportView(taUrgente);
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane3.setViewportView(jTextArea3);
+        taImportanteUrgente.setColumns(20);
+        taImportanteUrgente.setRows(5);
+        jScrollPane3.setViewportView(taImportanteUrgente);
 
-        jTextArea4.setColumns(20);
-        jTextArea4.setRows(5);
-        jScrollPane4.setViewportView(jTextArea4);
+        taNaoImportante.setColumns(20);
+        taNaoImportante.setRows(5);
+        jScrollPane4.setViewportView(taNaoImportante);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel6.setText("PANEJAMENTO DE TRABALHO DO DIA");
 
         tfId.setBackground(new java.awt.Color(204, 204, 255));
-
-        tfIdCategoria.setBackground(new java.awt.Color(204, 204, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -105,17 +223,15 @@ public class Trabalho extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(btnAcao)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(tfIdCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton2))
+                                .addComponent(btnExcluir))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(tfData, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -151,7 +267,7 @@ public class Trabalho extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -171,10 +287,9 @@ public class Trabalho extends javax.swing.JFrame {
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
-                            .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfIdCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnAcao)
+                            .addComponent(btnExcluir)
+                            .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -200,6 +315,36 @@ public class Trabalho extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAcaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcaoActionPerformed
+        DaoTrabalho daoTrabalho = new DaoTrabalho();
+       
+        if (btnAcao.getText() == Constantes.BTN_SALVAR_TEXT){
+            inserir();
+           
+            tfId.setText(String.valueOf(daoTrabalho.buscarProximoId()));
+             tfData.setText("");
+            taImportante.setText("");
+            taUrgente.setText("");
+            taImportanteUrgente.setText("");
+            taNaoImportante.setText("");
+           
+        }else if (btnAcao.getText() == Constantes.BTN_ALTERAR_TEXT){
+            alterar();
+                    ((ListTrabalho) Formularios.ListTrabalho).listarTodos();
+                    dispose();
+        }
+    }//GEN-LAST:event_btnAcaoActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+          int escolha =
+                JOptionPane.showConfirmDialog(
+                        null,
+                        "Deseja realmente excluir?");
+       
+        if(escolha == JOptionPane.YES_OPTION)
+            excluir();
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -237,8 +382,8 @@ public class Trabalho extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnAcao;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -250,12 +395,11 @@ public class Trabalho extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextArea taImportante;
+    private javax.swing.JTextArea taImportanteUrgente;
+    private javax.swing.JTextArea taNaoImportante;
+    private javax.swing.JTextArea taUrgente;
+    private javax.swing.JTextField tfData;
     private javax.swing.JTextField tfId;
-    private javax.swing.JTextField tfIdCategoria;
     // End of variables declaration//GEN-END:variables
 }

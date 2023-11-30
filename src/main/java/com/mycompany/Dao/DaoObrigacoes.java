@@ -18,7 +18,7 @@ import java.sql.ResultSet;
 public class DaoObrigacoes {
      private String sql;
     
-    public Boolean inserir(int id, int idcategoria, String data, String obrigacao){
+    public Boolean inserir(int id, String data, String obrigacao){
         try{
             sql ="INSERT INTO OBRIGACOES (ID, ID_CATEGORIA, DATA, OBRIGACAO) VALUES (?, ?, ?, ?)";
             
@@ -37,7 +37,7 @@ public class DaoObrigacoes {
         }
     }
     
-     public Boolean alterar(int id, int idcategoria, String data, String obrigacao){
+     public Boolean alterar(int id, String data, String obrigacao){
         try{ 
             sql = "UPDATE OBRIGACOES SET DATA = ?, OBRIGACAO = ? WHERE ID = ?";
             

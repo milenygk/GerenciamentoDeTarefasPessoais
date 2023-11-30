@@ -4,6 +4,13 @@
  */
 package com.mycompany.Visao;
 
+import com.mycompany.Dao.DaoHabitos;
+import com.mycompany.Ferramentas.Constantes;
+import com.mycompany.Ferramentas.DadosTemporarios;
+import com.mycompany.Ferramentas.Formularios;
+import com.mycompany.Modelo.ModHabitos;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mileny.1948
@@ -15,6 +22,86 @@ public class Habitos extends javax.swing.JFrame {
      */
     public Habitos() {
         initComponents();
+        
+          if(!existeDadosTemporarios()){
+             DaoHabitos daoHabitos = new DaoHabitos();
+
+            int id = daoHabitos.buscarProximoId();
+            if (id >= 0)
+                tfId.setText(String.valueOf(id));
+           
+            btnAcao.setText(Constantes.BTN_SALVAR_TEXT);
+            btnExcluir.setVisible(false);
+        }else{
+            btnAcao.setText(Constantes.BTN_ALTERAR_TEXT);
+            btnExcluir.setVisible(true);
+        }
+       
+        setLocationRelativeTo(null);
+       
+        tfId.setEnabled(false);
+    }
+
+    private Boolean existeDadosTemporarios(){        
+        if(DadosTemporarios.tempObject instanceof ModHabitos){
+            int id = ((ModHabitos) DadosTemporarios.tempObject).getId();
+            String novoHabito = ((ModHabitos) DadosTemporarios.tempObject).getNovoHabito();
+           
+            tfId.setText(String.valueOf(id));
+            tfHabito.setText(novoHabito);
+           
+            DadosTemporarios.tempObject = null;
+           
+            return true;
+        }else
+            return false;
+    }
+   
+    private void inserir(){
+        DaoHabitos daoHabitos = new DaoHabitos();
+       
+          if(daoHabitos.inserir(Integer.parseInt(tfId.getText()), tfHabito.getText())){
+            JOptionPane.showMessageDialog(null, "Marca salva com sucesso!");
+           
+            tfId.setText(String.valueOf(daoHabitos.buscarProximoId()));
+            tfHabito.setText("");
+        }else{
+            JOptionPane.showMessageDialog(null, "Não foi possível salvar a marca!");
+        }
+    }
+   
+    private void alterar(){
+        DaoHabitos daoHabitos = new DaoHabitos();
+       
+        if (daoHabitos.alterar(Integer.parseInt(tfId.getText()), tfHabito.getText())){
+            JOptionPane.showMessageDialog(null, "Marca alterada com sucesso!");
+           
+            tfId.setText("");
+            tfHabito.setText("");
+        }else{
+            JOptionPane.showMessageDialog(null, "Não foi possível alterar a marca!");
+        }
+       
+        ((ListHabitos) Formularios.ListHabitos).listarTodos();
+       
+        dispose();
+    }
+   
+    private void excluir(){
+        DaoHabitos daoHabitos = new DaoHabitos();
+       
+        if (daoHabitos.excluir(Integer.parseInt(tfId.getText()))){
+            JOptionPane.showMessageDialog(null, "Marca " + tfHabito.getText() + " excluída com sucesso!");
+           
+          tfId.setText("");
+            tfHabito.setText("");
+        }else{
+            JOptionPane.showMessageDialog(null, "Não foi possível alterar a marca!");
+        }
+       
+        ((ListHabitos) Formularios.ListHabitos).listarTodos();
+       
+        dispose();
     }
 
     /**
@@ -30,10 +117,9 @@ public class Habitos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         tfHabito = new javax.swing.JTextField();
-        btnSalvar = new javax.swing.JButton();
+        btnAcao = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         tfId = new javax.swing.JTextField();
-        tfIdCategoria = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -45,15 +131,23 @@ public class Habitos extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel2.setText("ADICIONE UM NOVO HÁBITO");
 
-        btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnSalvar.setText("SALVAR");
+        btnAcao.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAcao.setText("SALVAR");
+        btnAcao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcaoActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnExcluir.setText("EXCLUIR");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         tfId.setBackground(new java.awt.Color(204, 204, 255));
-
-        tfIdCategoria.setBackground(new java.awt.Color(204, 204, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -66,12 +160,10 @@ public class Habitos extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(btnSalvar)
+                            .addComponent(btnAcao)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tfIdCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(btnExcluir))
                         .addComponent(tfHabito, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(19, Short.MAX_VALUE))
@@ -87,10 +179,9 @@ public class Habitos extends javax.swing.JFrame {
                 .addComponent(tfHabito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalvar)
+                    .addComponent(btnAcao)
                     .addComponent(btnExcluir)
-                    .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfIdCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -113,6 +204,32 @@ public class Habitos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAcaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcaoActionPerformed
+        DaoHabitos daoHabitos = new DaoHabitos();
+       
+        if (btnAcao.getText() == Constantes.BTN_SALVAR_TEXT){
+            inserir();
+           
+            tfId.setText(String.valueOf(daoHabitos.buscarProximoId()));
+            tfHabito.setText("");
+           
+        }else if (btnAcao.getText() == Constantes.BTN_ALTERAR_TEXT){
+            alterar();
+                   ((ListHabitos) Formularios.ListHabitos).listarTodos();
+                    dispose();
+        }
+    }//GEN-LAST:event_btnAcaoActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        int escolha =
+                JOptionPane.showConfirmDialog(
+                        null,
+                        "Deseja realmente excluir o habito " + tfHabito.getText() + "?");
+       
+        if(escolha == JOptionPane.YES_OPTION)
+            excluir();
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,13 +267,12 @@ public class Habitos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAcao;
     private javax.swing.JButton btnExcluir;
-    private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField tfHabito;
     private javax.swing.JTextField tfId;
-    private javax.swing.JTextField tfIdCategoria;
     // End of variables declaration//GEN-END:variables
 }

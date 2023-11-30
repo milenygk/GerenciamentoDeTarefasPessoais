@@ -12,26 +12,16 @@ import java.sql.Date;
  */
 public class ModObrigacoes {
     private int id;
-    private int idCategoria;
-    private Date data;
+    private String data;
     private String obrigacoes;
 
     public ModObrigacoes() {
     }
 
-    public ModObrigacoes(int id, int idCategoria, Date data, String obrigacoes) {
+    public ModObrigacoes(int id, String data, String obrigacoes) {
         this.id = id;
-        this.idCategoria = idCategoria;
         this.data = data;
         this.obrigacoes = obrigacoes;
-    }
-
-    public Date getData() {
-        return data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
     }
 
     public int getId() {
@@ -42,12 +32,12 @@ public class ModObrigacoes {
         this.id = id;
     }
 
-    public int getIdCategoria() {
-        return idCategoria;
+    public String getData() {
+        return data;
     }
 
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
+    public void setData(String data) {
+        this.data = data;
     }
 
     public String getObrigacoes() {
@@ -57,9 +47,9 @@ public class ModObrigacoes {
     public void setObrigacoes(String obrigacoes) {
         this.obrigacoes = obrigacoes;
     }
-    
-     @Override
+
+    @Override
     public String toString() {
-        return "ModObrigacoes{"+ "id=" + id + ", idCategoria=" + idCategoria + ", data=" + data + ", obrigacoes=" + obrigacoes + '}';
+        return "ModObrigacoes{" + "id=" + id + ", data=" + data + ", obrigacoes=" + obrigacoes + '}';
     }
 }

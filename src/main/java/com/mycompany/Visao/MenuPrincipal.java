@@ -56,7 +56,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         labelMetas = new javax.swing.JLabel();
         labelViagens = new javax.swing.JLabel();
         LabelBlocoDeNotas = new javax.swing.JLabel();
-        labelCalendario = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         labelFinanceiro = new javax.swing.JLabel();
         labelConta = new javax.swing.JLabel();
@@ -187,10 +186,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        labelCalendario.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        labelCalendario.setText("CALENDÁRIO");
-        labelCalendario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -233,9 +228,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addComponent(labelHobbies)
                     .addComponent(labelHabitos)
                     .addComponent(labelViagens)
-                    .addComponent(LabelBlocoDeNotas)
-                    .addComponent(labelCalendario))
-                .addContainerGap(42, Short.MAX_VALUE))
+                    .addComponent(LabelBlocoDeNotas))
+                .addContainerGap(46, Short.MAX_VALUE))
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -270,9 +264,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                                 .addGap(21, 21, 21)
                                 .addComponent(labelObrigacoes)))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelFinanceiro)
-                            .addComponent(labelCalendario))
+                        .addComponent(labelFinanceiro)
                         .addGap(0, 18, Short.MAX_VALUE))))
         );
 
@@ -416,7 +408,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel labelCalendario;
     private javax.swing.JLabel labelConta;
     private javax.swing.JLabel labelEstudo;
     private javax.swing.JLabel labelFinanceiro;

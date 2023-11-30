@@ -12,32 +12,22 @@ import java.sql.Date;
  */
 public class ModTrabalho {
     private int id;
-    private int idCategoria;
-    private Date data;
+    private String data;
     private String importante;
     private String urgente;
     private String importanteUrgente;
     private String naoImportanteNemUrgente;
 
-    public ModTrabalho(int id, int idCategoria, Date data, String importante, String urgente, String importanteUrgente, String naoImportanteNemUrgente) {
+    public ModTrabalho() {
+    }
+
+    public ModTrabalho(int id, String data, String importante, String urgente, String importanteUrgente, String naoImportanteNemUrgente) {
         this.id = id;
-        this.idCategoria = idCategoria;
         this.data = data;
         this.importante = importante;
         this.urgente = urgente;
         this.importanteUrgente = importanteUrgente;
         this.naoImportanteNemUrgente = naoImportanteNemUrgente;
-    }
-
-    public ModTrabalho() {
-    }
-
-    public Date getData() {
-        return data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
     }
 
     public int getId() {
@@ -48,12 +38,12 @@ public class ModTrabalho {
         this.id = id;
     }
 
-    public int getIdCategoria() {
-        return idCategoria;
+    public String getData() {
+        return data;
     }
 
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
+    public void setData(String data) {
+        this.data = data;
     }
 
     public String getImportante() {
@@ -62,6 +52,14 @@ public class ModTrabalho {
 
     public void setImportante(String importante) {
         this.importante = importante;
+    }
+
+    public String getUrgente() {
+        return urgente;
+    }
+
+    public void setUrgente(String urgente) {
+        this.urgente = urgente;
     }
 
     public String getImportanteUrgente() {
@@ -80,16 +78,8 @@ public class ModTrabalho {
         this.naoImportanteNemUrgente = naoImportanteNemUrgente;
     }
 
-    public String getUrgente() {
-        return urgente;
-    }
-
-    public void setUrgente(String urgente) {
-        this.urgente = urgente;
-    }
-
-   @Override
+    @Override
     public String toString() {
-        return "ModTrbalho{"+ "id=" + id + ", idCategoria=" + idCategoria + ", data=" + data + ", importante=" + importante +  ", urgente=" + urgente + ",importanteUrgente=" + importanteUrgente + ", naoImportanteNemUrgente=" + naoImportanteNemUrgente + '}';
+        return "ModTrabalho{" + "id=" + id + ", data=" + data + ", importante=" + importante + ", urgente=" + urgente + ", importanteUrgente=" + importanteUrgente + ", naoImportanteNemUrgente=" + naoImportanteNemUrgente + '}';
     }
 }

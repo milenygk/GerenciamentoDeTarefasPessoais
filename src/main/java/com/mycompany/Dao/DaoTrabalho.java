@@ -14,16 +14,16 @@ import java.sql.ResultSet;
 public class DaoTrabalho extends ConexaoBancoDeDadosMySql {
     String sql;
     
-    public Boolean inserir(int id, int idCategoria, String data, String importante, String urgente,
+    public Boolean inserir(int id, String data, String importante, String urgente,
             String importanteUrgente, String naoImportanteNemUrgente){
          try{
-            sql = "INSERT INTO TRABALHO (ID, ID_CATEGORIA, DATA, IMPORTANTE, "
+            sql = "INSERT INTO TRABALHO (ID, DATA, IMPORTANTE, "
                     + "URGENTE, IMPORTANTE_URGENTE, NAO_IMPORTANTE_NEM_URGENTE) VALUES (?, ?, ?, ?, ?, ?, ?)";
             
           setStatement(getConexao().prepareStatement(sql));
             
            getStatement().setInt(1, id);
-           getStatement().setInt(2, idCategoria);
+//           getStatement().setInt(2, idCategoria);
            getStatement().setString(3, data);
            getStatement().setString(4, importante);
            getStatement().setString(5, urgente);
@@ -39,7 +39,7 @@ public class DaoTrabalho extends ConexaoBancoDeDadosMySql {
         }
     }
     
-    public Boolean alterar (int id, int idCategoria, String data, String importante, String urgente,
+    public Boolean alterar (int id, String data, String importante, String urgente,
             String importanteUrgente, String naoImportanteNemUrgente){
          try{
                sql = "UPDATE TRABALHO SET DATA = ?, IMPORTANTE = ?,"
