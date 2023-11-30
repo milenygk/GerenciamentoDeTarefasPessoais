@@ -20,14 +20,14 @@ import java.sql.ResultSet;
 public class DaoDespesas {
     private String sql;
     
-    public Boolean inserir( int quantidade, String data, String descricao, String categoria, double valor, double total, int parseInt1){
+    public Boolean inserir(int id, String data, String descricao, String categoria, double valor, double total, int quantidade){
         try{
             sql = "INSERT INTO FINANCEIRO (ID, DATA, DESCRICAO, "
                     + "CATEGORIA, VALOR, TOTAL, QUANTIDADE) VALUES (?, ?, ?, ?, ?, ?, ?)";
             
           setStatement(getConexao().prepareStatement(sql));
             
-//           getStatement().setInt(1, id);
+           getStatement().setInt(1, id);
            getStatement().setString(2, data);
            getStatement().setString(3, descricao);
            getStatement().setString(4, categoria);
