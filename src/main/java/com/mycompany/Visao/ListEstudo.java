@@ -4,7 +4,12 @@
  */
 package com.mycompany.Visao;
 
+import com.mycompany.Dao.DaoEstudo;
+import com.mycompany.Ferramentas.DadosTemporarios;
 import com.mycompany.Ferramentas.Formularios;
+import com.mycompany.Modelo.ModEstudo;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,8 +22,151 @@ public class ListEstudo extends javax.swing.JFrame {
      */
     public ListEstudo() {
         initComponents();
+        
+          setLocationRelativeTo(null);
+       
+        listarTodos();
     }
 
+    public void listarTodos(){
+        try{
+            DefaultTableModel defaultTableModel = (DefaultTableModel) tableEstudo.getModel();
+           
+            tableEstudo.setModel(defaultTableModel);
+
+            DaoEstudo daoEstudo = new DaoEstudo();
+
+            ResultSet resultSet = daoEstudo.listarTodos();
+           
+            defaultTableModel.setRowCount(0);
+            while (resultSet.next()){
+                String id = resultSet.getString(1);
+                String habito = resultSet.getString(2);
+               
+                defaultTableModel.addRow(new Object[]{id, habito});
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+   
+    public void listarPorId(int pId){
+        try{
+            DefaultTableModel defaultTableModel = (DefaultTableModel) tableEstudo.getModel();
+
+            tableEstudo.setModel(defaultTableModel);
+
+            DaoEstudo daoEstudo = new DaoEstudo();
+
+            ResultSet resultSet = daoEstudo.listarPorId(pId);
+           
+            defaultTableModel.setRowCount(0);
+            while (resultSet.next()){
+                String id = resultSet.getString(1);
+                String habito = resultSet.getString(2);
+               
+                defaultTableModel.addRow(new Object[]{id, habito});
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+   
+    public void listarPorData(){
+        try{
+            DefaultTableModel defaultTableModel = (DefaultTableModel) tableEstudo.getModel();
+           
+             tableEstudo.setModel(defaultTableModel);
+
+            DaoEstudo daoEstudo = new DaoEstudo();
+            ResultSet resultSet = daoEstudo.listarPorData(tfFiltro.getText());
+           
+            defaultTableModel.setRowCount(0);
+            while (resultSet.next()){
+               String id = resultSet.getString(1);
+               String data = resultSet.getString(2);
+               String materia = resultSet.getString(3);
+               String conteudo = resultSet.getString(4);
+               String tempoDeEstudo = resultSet.getString(5);
+               
+                defaultTableModel.addRow(new Object[]{id, data, materia, conteudo, tempoDeEstudo});
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+     public void listarPorMateria(){
+        try{
+            DefaultTableModel defaultTableModel = (DefaultTableModel) tableEstudo.getModel();
+           
+             tableEstudo.setModel(defaultTableModel);
+
+            DaoEstudo daoEstudo = new DaoEstudo();
+            ResultSet resultSet = daoEstudo.listarPorMateria(tfFiltro.getText());
+           
+            defaultTableModel.setRowCount(0);
+            while (resultSet.next()){
+                String id = resultSet.getString(1);
+               String data = resultSet.getString(2);
+               String materia = resultSet.getString(3);
+               String conteudo = resultSet.getString(4);
+               String tempoDeEstudo = resultSet.getString(5);
+               
+                defaultTableModel.addRow(new Object[]{id, data, materia, conteudo, tempoDeEstudo});
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+  public void listarPorConteudo(){
+        try{
+            DefaultTableModel defaultTableModel = (DefaultTableModel) tableEstudo.getModel();
+           
+             tableEstudo.setModel(defaultTableModel);
+
+            DaoEstudo daoEstudo = new DaoEstudo();
+            ResultSet resultSet = daoEstudo.listarPorConteudo(tfFiltro.getText());
+           
+            defaultTableModel.setRowCount(0);
+            while (resultSet.next()){
+                String id = resultSet.getString(1);
+               String data = resultSet.getString(2);
+               String materia = resultSet.getString(3);
+               String conteudo = resultSet.getString(4);
+               String tempoDeEstudo = resultSet.getString(5);
+               
+                defaultTableModel.addRow(new Object[]{id, data, materia, conteudo, tempoDeEstudo});
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+  
+   public void listarPorTempodeEstudo(){
+        try{
+            DefaultTableModel defaultTableModel = (DefaultTableModel) tableEstudo.getModel();
+           
+             tableEstudo.setModel(defaultTableModel);
+
+            DaoEstudo daoEstudo = new DaoEstudo();
+            ResultSet resultSet = daoEstudo.listarPorTempodeEstudo(tfFiltro.getText());
+           
+            defaultTableModel.setRowCount(0);
+            while (resultSet.next()){
+                String id = resultSet.getString(1);
+               String data = resultSet.getString(2);
+               String materia = resultSet.getString(3);
+               String conteudo = resultSet.getString(4);
+               String tempoDeEstudo = resultSet.getString(5);
+               
+                defaultTableModel.addRow(new Object[]{id, data, materia, conteudo, tempoDeEstudo});
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,11 +179,11 @@ public class ListEstudo extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        tableEstudo = new javax.swing.JTable();
+        jcbTipoFiltro = new javax.swing.JComboBox<>();
+        tfFiltro = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        btnAdicionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -44,34 +192,44 @@ public class ListEstudo extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel1.setText("LISTA DE PLANEJAMENTO DE ESTUDO");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableEstudo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Data", "Materia", "Conteudo", "Tempo de estudo"
+                "Id", "Data", "Materia", "Conteudo", "Tempo de estudo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        tableEstudo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableEstudoMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tableEstudo);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Data", "Materia", "Conteudo", "Tempo de estudo", " " }));
+        jcbTipoFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Data", "Materia", "Conteudo", "Tempo de estudo", " " }));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setText("BUSCAR");
-
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setText("PLANEJAMENTO DO DIA");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBuscar.setText("BUSCAR");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
+        btnAdicionar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAdicionar.setText("PLANEJAMENTO DO DIA");
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarActionPerformed(evt);
             }
         });
 
@@ -94,13 +252,13 @@ public class ListEstudo extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jcbTipoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField1))
+                                .addComponent(tfFiltro))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(btnBuscar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2)))
+                                .addComponent(btnAdicionar)))
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -110,14 +268,14 @@ public class ListEstudo extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbTipoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnBuscar)
+                    .addComponent(btnAdicionar))
                 .addContainerGap())
         );
 
@@ -141,12 +299,52 @@ public class ListEstudo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         if (Formularios.estudo == null)
             Formularios.estudo = new Estudo();
 
         Formularios.estudo.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnAdicionarActionPerformed
+
+    private void tableEstudoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableEstudoMouseClicked
+         if (evt.getClickCount() == 2){
+              ModEstudo modEstudo = new ModEstudo();
+
+            modEstudo.setId(Integer.parseInt(String.valueOf(tableEstudo.getValueAt(tableEstudo.getSelectedRow(), 0))));
+            modEstudo.setData(String.valueOf(tableEstudo.getValueAt(tableEstudo.getSelectedRow(), 1)));
+            modEstudo.setMateria(String.valueOf(tableEstudo.getValueAt(tableEstudo.getSelectedRow(), 2)));
+            modEstudo.setConteudo(String.valueOf(tableEstudo.getValueAt(tableEstudo.getSelectedRow(), 3)));
+            modEstudo.setTempoEstudo(String.valueOf(tableEstudo.getValueAt(tableEstudo.getSelectedRow(), 4)));
+
+              DadosTemporarios.tempObject = (ModEstudo) modEstudo;
+
+            Estudo estudo = new Estudo();
+            estudo.setVisible(true);
+        }
+    }//GEN-LAST:event_tableEstudoMouseClicked
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+          switch (jcbTipoFiltro.getSelectedIndex()){
+            case 0:
+                listarTodos();
+                break;
+            case 1:
+                listarPorId(Integer.parseInt(tfFiltro.getText()));
+                break;
+            case 2:
+                listarPorData();
+                break;
+            case 3:
+                listarPorMateria();
+                break;
+            case 4:
+                listarPorConteudo();
+                break;
+            case 5:
+                listarPorTempodeEstudo();
+                break;    
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,13 +382,13 @@ public class ListEstudo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton btnAdicionar;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox<String> jcbTipoFiltro;
+    private javax.swing.JTable tableEstudo;
+    private javax.swing.JTextField tfFiltro;
     // End of variables declaration//GEN-END:variables
 }

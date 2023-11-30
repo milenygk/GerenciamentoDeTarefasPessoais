@@ -80,19 +80,19 @@ public class DaoTrabalho extends ConexaoBancoDeDadosMySql {
         }
     }
      
-      public ResultSet listarTodos(){
+    public ResultSet listarTodos(){
         try{
-            sql =   " SELECT                                                     " +
-                    "TRA.ID AS ID,                                               " +
-                    "TRA.data AS DATA,                                           " +
-                    "TRA.IMPORTANTE  AS IMPORTANTE,                              " + 
-                    "TRA.URGENTE AS UEGENTE,                                     " +
-                    "TRA.IMPORTANTE_URGENTE AS IMPORTANTE_URGENTE,               " + 
-                    "TRA.NAO_IMPORTANTE_NEM_URGENTE AS NAO_IMPORTANTE_NEM_URGENTE" +
-                    "FROM                                                        " +
-                    "TRABALHO TRA                                                ";
-                    
-                     setStatement(getConexao().prepareStatement(sql));
+            sql =   " SELECT                                                    "+
+                    "   ID AS ID,                                               "+
+                    "   DATA AS DATA,                                           "+
+                    "   IMPORTANTE  AS IMPORTANTE,                              "+ 
+                    "   URGENTE AS UEGENTE,                                     "+
+                    "   IMPORTANTE_URGENTE AS IMPORTANTE_URGENTE,               "+ 
+                    "   NAO_IMPORTANTE_NEM_URGENTE AS NAO_IMPORTANTE_NEM_URGENTE "+
+                    " FROM                                                       "+
+                    "   TRABALHO                                                ";
+                                
+            setStatement(getConexao().prepareStatement(sql));
             
             setResultado(getStatement().executeQuery());
         }catch(Exception e){
@@ -110,7 +110,7 @@ public class DaoTrabalho extends ConexaoBancoDeDadosMySql {
                     "TRA.IMPORTANTE  AS IMPORTANTE,                              " + 
                     "TRA.URGENTE AS UEGENTE,                                     " +
                     "TRA.IMPORTANTE_URGENTE AS IMPORTANTE_URGENTE,               " + 
-                    "TRA.NAO_IMPORTANTE_NEM_URGENTE AS NAO_IMPORTANTE_NEM_URGENTE" +
+                    "TRA.NAO_IMPORTANTE_NEM_URGENTE AS NAO_IMPORTANTE_NEM_URGENTE " +
                     "FROM                                                        " +
                     "TRABALHO TRA                                                " +
                     "WHERE                                                       " +
@@ -136,7 +136,7 @@ public class DaoTrabalho extends ConexaoBancoDeDadosMySql {
                     "TRA.IMPORTANTE  AS IMPORTANTE,                              " + 
                     "TRA.URGENTE AS UEGENTE,                                     " +
                     "TRA.IMPORTANTE_URGENTE AS IMPORTANTE_URGENTE,               " + 
-                    "TRA.NAO_IMPORTANTE_NEM_URGENTE AS NAO_IMPORTANTE_NEM_URGENTE" +
+                    "TRA.NAO_IMPORTANTE_NEM_URGENTE AS NAO_IMPORTANTE_NEM_URGENTE " +
                     "FROM                                                        " +
                     "TRABALHO TRA                                                " +
                     "WHERE                                                       " +
@@ -162,11 +162,11 @@ public class DaoTrabalho extends ConexaoBancoDeDadosMySql {
                     "TRA.IMPORTANTE  AS IMPORTANTE,                              " + 
                     "TRA.URGENTE AS UEGENTE,                                     " +
                     "TRA.IMPORTANTE_URGENTE AS IMPORTANTE_URGENTE,               " + 
-                    "TRA.NAO_IMPORTANTE_NEM_URGENTE AS NAO_IMPORTANTE_NEM_URGENTE" +
+                    "TRA.NAO_IMPORTANTE_NEM_URGENTE AS NAO_IMPORTANTE_NEM_URGENTE " +
                     "FROM                                                        " +
                     "TRABALHO TRA                                                " +
                     "WHERE                                                       " +
-                    "TRA.IMPORTANTE LIKE ?                                             ";
+                    "TRA.IMPORTANTE LIKE ?                                       ";
                     
             setStatement(getConexao().prepareStatement(sql));
             
@@ -188,11 +188,11 @@ public class DaoTrabalho extends ConexaoBancoDeDadosMySql {
                     "TRA.IMPORTANTE  AS IMPORTANTE,                              " + 
                     "TRA.URGENTE AS UEGENTE,                                     " +
                     "TRA.IMPORTANTE_URGENTE AS IMPORTANTE_URGENTE,               " + 
-                    "TRA.NAO_IMPORTANTE_NEM_URGENTE AS NAO_IMPORTANTE_NEM_URGENTE" +
+                    "TRA.NAO_IMPORTANTE_NEM_URGENTE AS NAO_IMPORTANTE_NEM_URGENTE " +
                     "FROM                                                        " +
                     "TRABALHO TRA                                                " +
                     "WHERE                                                       " +
-                    "TRA.URGENTE LIKE ?                                             ";
+                    "TRA.URGENTE LIKE ?                                          ";
                     
             setStatement(getConexao().prepareStatement(sql));
             
@@ -214,7 +214,7 @@ public class DaoTrabalho extends ConexaoBancoDeDadosMySql {
                     "TRA.IMPORTANTE  AS IMPORTANTE,                              " + 
                     "TRA.URGENTE AS UEGENTE,                                     " +
                     "TRA.IMPORTANTE_URGENTE AS IMPORTANTE_URGENTE,               " + 
-                    "TRA.NAO_IMPORTANTE_NEM_URGENTE AS NAO_IMPORTANTE_NEM_URGENTE" +
+                    "TRA.NAO_IMPORTANTE_NEM_URGENTE AS NAO_IMPORTANTE_NEM_URGENTE " +
                     "FROM                                                        " +
                     "TRABALHO TRA                                                " +
                     "WHERE                                                       " +
@@ -240,7 +240,7 @@ public class DaoTrabalho extends ConexaoBancoDeDadosMySql {
                     "TRA.IMPORTANTE  AS IMPORTANTE,                              " + 
                     "TRA.URGENTE AS UEGENTE,                                     " +
                     "TRA.IMPORTANTE_URGENTE AS IMPORTANTE_URGENTE,               " + 
-                    "TRA.NAO_IMPORTANTE_NEM_URGENTE AS NAO_IMPORTANTE_NEM_URGENTE" +
+                    "TRA.NAO_IMPORTANTE_NEM_URGENTE AS NAO_IMPORTANTE_NEM_URGENTE " +
                     "FROM                                                        " +
                     "TRABALHO TRA                                                " +
                     "WHERE                                                       " +

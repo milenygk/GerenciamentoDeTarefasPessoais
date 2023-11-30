@@ -36,10 +36,10 @@ public class ListTrabalho extends javax.swing.JFrame {
            
             tableTrabalho.setModel(defaultTableModel);
 
-          DaoTrabalho daoTrabalho = new DaoTrabalho();
+            DaoTrabalho daoTrabalho = new DaoTrabalho();
 
             ResultSet resultSet = daoTrabalho.listarTodos();
-           
+
             defaultTableModel.setRowCount(0);
             while (resultSet.next()){
                 String id = resultSet.getString(1);

@@ -18,16 +18,16 @@ import java.sql.ResultSet;
 public class DaoEstudo {
     private String sql;
     
-    public Boolean inserir(int id, int idcategoria, String data, String materia, String conteudo,
+    public Boolean inserir(int id, String data, String materia, String conteudo,
             String tempodeEstudo){
         try{
-            sql = "INSERT INTO ESTUDO (ID, ID_CATEGORIA, DATA, MATERIA, "
+            sql = "INSERT INTO ESTUDO (ID, DATA, MATERIA, "
                     + "CONTEUDO, TEMPO_ESTUDO) VALUES (?, ?, ?, ?, ?, ?)";
             
           setStatement(getConexao().prepareStatement(sql));
             
            getStatement().setInt(1, id);
-           getStatement().setInt(2, idcategoria);
+//           getStatement().setInt(2, idcategoria);
            getStatement().setString(3, data);
            getStatement().setString(4, materia);
            getStatement().setString(5, conteudo);
@@ -42,7 +42,7 @@ public class DaoEstudo {
         }
     }  
     
-    public Boolean alterar(int id, int idcategoria, String data, String materia, String conteudo,
+    public Boolean alterar(int id, String data, String materia, String conteudo,
             String tempodeEstudo){
          
           try{

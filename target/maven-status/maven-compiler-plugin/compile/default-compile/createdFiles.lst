@@ -28,6 +28,7 @@ com\mycompany\Visao\ListPlanejamentoDiario$2.class
 com\mycompany\Dao\DaoAnotacoes.class
 com\mycompany\Visao\ListHobbies.class
 com\mycompany\Visao\ListMeusDados$4.class
+com\mycompany\Visao\ListEstudo$4.class
 com\mycompany\Visao\ListAnotacoes$2.class
 com\mycompany\Visao\ListMetas.class
 com\mycompany\Dao\DaoMetas.class
@@ -56,6 +57,7 @@ com\mycompany\Visao\ListObrigacoes.class
 com\mycompany\Visao\Estudo$1.class
 com\mycompany\Dao\DaoPessoa.class
 com\mycompany\Dao\DaoPlanejamentoDiario.class
+com\mycompany\Visao\ListEstudo$5.class
 com\mycompany\Visao\Viagens$1.class
 com\mycompany\Visao\Despesas$3.class
 com\mycompany\Dao\DaoCategoria.class

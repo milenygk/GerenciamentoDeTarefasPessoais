@@ -12,38 +12,20 @@ import java.sql.Date;
  */
 public class ModEstudo {
     private int id;
-    private int idCategoria;
-    private Date data;
+    private String data;
     private String materia;
     private String conteudo;
     private String tempoEstudo;
 
-    public ModEstudo() {
-    }
-
-    public ModEstudo(int id, int idCategoria, Date data, String materia, String conteudo, String tempoEstudo) {
+    public ModEstudo(int id, String data, String materia, String conteudo, String tempoEstudo) {
         this.id = id;
-        this.idCategoria = idCategoria;
         this.data = data;
         this.materia = materia;
         this.conteudo = conteudo;
         this.tempoEstudo = tempoEstudo;
     }
 
-    public String getConteudo() {
-        return conteudo;
-    }
-
-    public void setConteudo(String conteudo) {
-        this.conteudo = conteudo;
-    }
-
-    public Date getData() {
-        return data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
+    public ModEstudo() {
     }
 
     public int getId() {
@@ -54,12 +36,12 @@ public class ModEstudo {
         this.id = id;
     }
 
-    public int getIdCategoria() {
-        return idCategoria;
+    public String getData() {
+        return data;
     }
 
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
+    public void setData(String data) {
+        this.data = data;
     }
 
     public String getMateria() {
@@ -70,6 +52,14 @@ public class ModEstudo {
         this.materia = materia;
     }
 
+    public String getConteudo() {
+        return conteudo;
+    }
+
+    public void setConteudo(String conteudo) {
+        this.conteudo = conteudo;
+    }
+
     public String getTempoEstudo() {
         return tempoEstudo;
     }
@@ -77,9 +67,9 @@ public class ModEstudo {
     public void setTempoEstudo(String tempoEstudo) {
         this.tempoEstudo = tempoEstudo;
     }
-    
-     @Override
+
+    @Override
     public String toString() {
-        return "ModEstudo{"+ "id=" + id + ", idCategoria=" + idCategoria + ", data=" + data + ", materia=" + materia +  ", conteudo=" + conteudo + ",tempoEstudo=" + tempoEstudo + '}';
+        return "ModEstudo{" + "id=" + id + ", data=" + data + ", materia=" + materia + ", conteudo=" + conteudo + ", tempoEstudo=" + tempoEstudo + '}';
     }
 }
