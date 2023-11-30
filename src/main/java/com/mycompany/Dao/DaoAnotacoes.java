@@ -20,7 +20,7 @@ public class DaoAnotacoes {
     
     public Boolean inserir(int id, String data, String anotacoes){
         try{
-            sql ="INSERT INTO ANOTACOES (ID, DATA, ANOTACOES) VALUES (?, ?, ?, ?)";
+            sql =" INSERT INTO ANOTACOES (ID, DATA, ANOTACOES) VALUES (?, ?, ?, ?) ";
             
            setStatement(getConexao().prepareStatement(sql));
             
@@ -39,7 +39,7 @@ public class DaoAnotacoes {
     
      public Boolean alterar(int id, String data, String anotacoes){
         try{ 
-            sql = "UPDATE ANOTACOES SET DATA = ?, ANOTACOES = ? WHERE ID = ?";
+            sql = " UPDATE ANOTACOES SET DATA = ?, ANOTACOES = ? WHERE ID = ? ";
             
             setStatement(getConexao().prepareStatement(sql));
             
@@ -58,7 +58,7 @@ public class DaoAnotacoes {
      
      public Boolean excluir(int id){
         try{
-            sql = "DELETE FROM ANOTACOES WHERE ID = ?";
+            sql = " DELETE FROM ANOTACOES WHERE ID = ? ";
             
             setStatement(getConexao().prepareStatement(sql));
             
@@ -75,12 +75,12 @@ public class DaoAnotacoes {
      
        public ResultSet listarTodos(){
         try{
-            sql =   "SELECT                    " +
-                    "ANO.ID AS ID,             " +
-                    "ANO.DATA AS DATA,         " +
-                    "ANO.ANOTACOES AS ANOTACOES" +
-                    "FROM                      " +
-                    "ANOTACOES ANO             "; 
+            sql =   " SELECT                     " +
+                    " ANO.ID AS ID,              " +
+                    " ANO.DATA AS DATA,          " +
+                    " ANO.ANOTACOES AS ANOTACOES " +
+                    " FROM                       " +
+                    " ANOTACOES ANO              "; 
             
             setStatement(getConexao().prepareStatement(sql));
             
@@ -93,14 +93,14 @@ public class DaoAnotacoes {
      
      public ResultSet listarPorId(int id){
         try{
-            sql =   "SELECT                    " +
-                    "ANO.ID AS ID,             " +
-                    "ANO.DATA AS DATA,         " +
-                    "ANO.ANOTACOES AS ANOTACOES" +
-                    "FROM                      " +
-                    "ANOTACOES ANO             " +
-                    "WHERE                     " +
-                    "ANO.ID = ?                ";
+            sql =   " SELECT                     " +
+                    " ANO.ID AS ID,              " +
+                    " ANO.DATA AS DATA,          " +
+                    " ANO.ANOTACOES AS ANOTACOES " +
+                    " FROM                       " +
+                    " ANOTACOES ANO              " +
+                    " WHERE                      " +
+                    " ANO.ID = ?                 ";
                    
          setStatement(getConexao().prepareStatement(sql));
             
@@ -116,14 +116,14 @@ public class DaoAnotacoes {
      
      public ResultSet listarPorData(String pData){
         try{ 
-            sql =   "SELECT                    " +
-                    "ANO.ID AS ID,             " +
-                    "ANO.DATA AS DATA,         " +
-                    "ANO.ANOTACOES AS ANOTACOES" +
-                    "FROM                      " +
-                    "ANOTACOES ANO             " +
-                    "WHERE                     " +
-                    "ANO.DATA LIKE ?           ";
+            sql =   " SELECT                     " +
+                    " ANO.ID AS ID,              " +
+                    " ANO.DATA AS DATA,          " +
+                    " ANO.ANOTACOES AS ANOTACOES " +
+                    " FROM                       " +
+                    " ANOTACOES ANO              " +
+                    " WHERE                      " +
+                    " ANO.DATA LIKE ?            ";
                    
             
         setStatement(getConexao().prepareStatement(sql));
@@ -140,14 +140,14 @@ public class DaoAnotacoes {
      
       public ResultSet listarPorAnotacoes(String anotacoes){
         try{
-            sql =   "SELECT                    " +
-                    "ANO.ID AS ID,             " +
-                    "ANO.DATA AS DATA,         " +
-                    "ANO.ANOTACOES AS ANOTACOES" +
-                    "FROM                      " +
-                    "ANOTACOES ANO             " +
-                    "WHERE                     " +
-                    "ANO.ANOTACOES LIKE ?      ";
+            sql =   " SELECT                     " +
+                    " ANO.ID AS ID,              " +
+                    " ANO.DATA AS DATA,          " +
+                    " ANO.ANOTACOES AS ANOTACOES " +
+                    " FROM                       " +
+                    " ANOTACOES ANO              " +
+                    " WHERE                      " +
+                    " ANO.ANOTACOES LIKE ?       ";
             
             setStatement(getConexao().prepareStatement(sql));
             
@@ -165,7 +165,7 @@ public class DaoAnotacoes {
         int id = -1;
         
         try{
-            sql = "SELECT IFNULL(MAX(ID), 0) + 1 FROM ANOTACOES";
+            sql = " SELECT IFNULL(MAX(ID), 0) + 1 FROM ANOTACOES ";
             
             setStatement(getConexao().prepareStatement(sql));
             

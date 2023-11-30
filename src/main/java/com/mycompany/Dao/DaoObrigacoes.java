@@ -20,7 +20,7 @@ public class DaoObrigacoes {
     
     public Boolean inserir(int id, String data, String obrigacao){
         try{
-            sql ="INSERT INTO OBRIGACOES (ID, ID_CATEGORIA, DATA, OBRIGACAO) VALUES (?, ?, ?, ?)";
+            sql =" INSERT INTO OBRIGACOES (ID, ID_CATEGORIA, DATA, OBRIGACAO) VALUES (?, ?, ?, ?) ";
             
            setStatement(getConexao().prepareStatement(sql));
             
@@ -39,7 +39,7 @@ public class DaoObrigacoes {
     
      public Boolean alterar(int id, String data, String obrigacao){
         try{ 
-            sql = "UPDATE OBRIGACOES SET DATA = ?, OBRIGACAO = ? WHERE ID = ?";
+            sql = " UPDATE OBRIGACOES SET DATA = ?, OBRIGACAO = ? WHERE ID =  ?";
             
             setStatement(getConexao().prepareStatement(sql));
             
@@ -58,7 +58,7 @@ public class DaoObrigacoes {
      
      public Boolean excluir(int id){
         try{
-            sql = "DELETE FROM OBRIGACOES WHERE ID = ?";
+            sql = " DELETE FROM OBRIGACOES WHERE ID = ? ";
             
             setStatement(getConexao().prepareStatement(sql));
             
@@ -75,12 +75,12 @@ public class DaoObrigacoes {
      
        public ResultSet listarTodos(){
         try{
-            sql =   " SELECT                    " +
-                    "OBRI.ID AS ID,             " +
-                    "OBRI.DATA AS DATA,         " +
-                    "OBRI.OBRIGACAO AS OBRIGACAO" +
-                    "FROM                       " +
-                    "OBRIGACOES OBRI            "; 
+            sql =   " SELECT                      " +
+                    " OBRI.ID AS ID,              " +
+                    " OBRI.DATA AS DATA,          " +
+                    " OBRI.OBRIGACAO AS OBRIGACAO " +
+                    " FROM                        " +
+                    " OBRIGACOES OBRI             "; 
             
             setStatement(getConexao().prepareStatement(sql));
             
@@ -93,14 +93,14 @@ public class DaoObrigacoes {
      
      public ResultSet listarPorId(int id){
         try{
-            sql =   "SELECT                    " +
-                    "OBRI.ID AS ID,             " +
-                    "OBRI.DATA AS DATA,         " +
-                    "OBRI.OBRIGACAO AS OBRIGACAO" +
-                    "FROM                       " +
-                    "OBRIGACOES OBRI            " +
-                    "WHERE                      " +
-                    "OBRI.ID = ?                ";
+            sql =   " SELECT                      " +
+                    " OBRI.ID AS ID,              " +
+                    " OBRI.DATA AS DATA,          " +
+                    " OBRI.OBRIGACAO AS OBRIGACAO " +
+                    " FROM                        " +
+                    " OBRIGACOES OBRI             " +
+                    " WHERE                       " +
+                    " OBRI.ID = ?                 ";
                    
          setStatement(getConexao().prepareStatement(sql));
             
@@ -116,14 +116,14 @@ public class DaoObrigacoes {
      
      public ResultSet listarPorData(String data){
         try{ 
-            sql =   "SELECT                    " +
-                    "OBRI.ID AS ID,             " +
-                    "OBRI.DATA AS DATA,         " +
-                    "OBRI.OBRIGACAO AS OBRIGACAO" +
-                    "FROM                       " +
-                    "OBRIGACOES OBRI            " +
-                    "WHERE                      " +
-                    "OBRI.DATA LIKE ?           ";
+            sql =   " SELECT                      " +
+                    " OBRI.ID AS ID,              " +
+                    " OBRI.DATA AS DATA,          " +
+                    " OBRI.OBRIGACAO AS OBRIGACAO " +
+                    " FROM                        " +
+                    " OBRIGACOES OBRI             " +
+                    " WHERE                       " +
+                    " OBRI.DATA LIKE ?            ";
             
         setStatement(getConexao().prepareStatement(sql));
             
@@ -140,14 +140,14 @@ public class DaoObrigacoes {
       public ResultSet listarPorObrigacao(String obrigacao){
         try{
             sql = 
-                    "SELECT                    " +
-                    "OBRI.ID AS ID,             " +
-                    "OBRI.DATA AS DATA,         " +
-                    "OBRI.OBRIGACAO AS OBRIGACAO" +
-                    "FROM                       " +
-                    "OBRIGACOES OBRI            " +
-                    "WHERE                      " +
-                    "OBRI.OBRIGACAO LIKE ?           ";
+                    " SELECT                      " +
+                    " OBRI.ID AS ID,              " +
+                    " OBRI.DATA AS DATA,          " +
+                    " OBRI.OBRIGACAO AS OBRIGACAO " +
+                    " FROM                        " +
+                    " OBRIGACOES OBRI             " +
+                    " WHERE                       " +
+                    " OBRI.OBRIGACAO LIKE ?       ";
             
             setStatement(getConexao().prepareStatement(sql));
             
@@ -165,7 +165,7 @@ public class DaoObrigacoes {
         int id = -1;
         
         try{
-            sql = "SELECT IFNULL(MAX(ID), 0) + 1 FROM OBRIGACOES";
+            sql = " SELECT IFNULL(MAX(ID), 0) + 1 FROM OBRIGACOES ";
             
             setStatement(getConexao().prepareStatement(sql));
             
