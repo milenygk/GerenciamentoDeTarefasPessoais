@@ -241,7 +241,7 @@ public class ListTrabalho extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Data", "Importante", "Importante e urgente", "Urgente", "Nã importante nem urgente"
+                "Id", "Data", "Importante", "Importante e urgente", "Urgente", "Não importante nem urgente"
             }
         ) {
             boolean[] canEdit = new boolean [] {

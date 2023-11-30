@@ -40,10 +40,13 @@ public class ListEstudo extends javax.swing.JFrame {
            
             defaultTableModel.setRowCount(0);
             while (resultSet.next()){
-                String id = resultSet.getString(1);
-                String habito = resultSet.getString(2);
+               String id = resultSet.getString(1);
+               String data = resultSet.getString(2);
+               String materia = resultSet.getString(3);
+               String conteudo = resultSet.getString(4);
+               String tempoDeEstudo = resultSet.getString(5);
                
-                defaultTableModel.addRow(new Object[]{id, habito});
+                defaultTableModel.addRow(new Object[]{id, data, materia, conteudo, tempoDeEstudo});
             }
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -62,10 +65,13 @@ public class ListEstudo extends javax.swing.JFrame {
            
             defaultTableModel.setRowCount(0);
             while (resultSet.next()){
-                String id = resultSet.getString(1);
-                String habito = resultSet.getString(2);
+               String id = resultSet.getString(1);
+               String data = resultSet.getString(2);
+               String materia = resultSet.getString(3);
+               String conteudo = resultSet.getString(4);
+               String tempoDeEstudo = resultSet.getString(5);
                
-                defaultTableModel.addRow(new Object[]{id, habito});
+                defaultTableModel.addRow(new Object[]{id, data, materia, conteudo, tempoDeEstudo});
             }
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -155,7 +161,7 @@ public class ListEstudo extends javax.swing.JFrame {
            
             defaultTableModel.setRowCount(0);
             while (resultSet.next()){
-                String id = resultSet.getString(1);
+               String id = resultSet.getString(1);
                String data = resultSet.getString(2);
                String materia = resultSet.getString(3);
                String conteudo = resultSet.getString(4);
@@ -241,14 +247,9 @@ public class ListEstudo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 1, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(96, 96, 96))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(96, 96, 96))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -259,7 +260,10 @@ public class ListEstudo extends javax.swing.JFrame {
                                 .addComponent(btnBuscar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnAdicionar)))
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
